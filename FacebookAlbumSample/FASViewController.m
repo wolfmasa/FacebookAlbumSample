@@ -26,4 +26,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [FBLoginView class];
+    return YES;
+}
+
 @end
