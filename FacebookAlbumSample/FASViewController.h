@@ -10,5 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface FASViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *albumGetButton;
+- (IBAction)getAlbumList:(id)sender;
 
 @end

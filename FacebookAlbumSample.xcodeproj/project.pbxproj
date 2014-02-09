@@ -487,6 +487,7 @@
 				447CB43118A5F29F00EC0012 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		447CB43218A5F29F00EC0012 /* Build configuration list for PBXNativeTarget "FacebookAlbumSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +496,7 @@
 				447CB43418A5F29F00EC0012 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
