@@ -36,7 +36,7 @@
     
     // We will request the user's public profile and the user's birthday
     // These are the permissions we need:
-    NSArray *permissionsNeeded = @[@"basic_info", @"user_photos"];
+    NSArray *permissionsNeeded = @[@"basic_info", @"user_photos", @"user_about_me"];
     
     // Request the permissions the user currently has
     [FBRequestConnection startWithGraphPath:@"/me/permissions"
@@ -84,17 +84,39 @@
                           }];
 }
 
--(void)makeRequestForUserData
+-(void)makeRequestForUserDataWithPath:(NSString*)url
 {
+    NSLog(@"URL:%@", url);
     // Request the permissions the user currently has
-    [FBRequestConnection startWithGraphPath:@"/me/photos?fields=count"
-                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+    [FBRequestConnection startWithGraphPath:url
+                          completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               NSLog(@"call");
                               if (!error){
-                                  NSLog(@"%@", result);
+                                  //NSError *returnError;
+                                  FBGraphObject *albums = [result objectForKey:@"albums"];
+                                  
+                                  NSMutableArray *data = [albums objectForKey:@"data"];
+                                  for (NSInteger i=0; i<data.count; i++) {
+                                      FBGraphObject *obj = [data objectAtIndex:i];
+                                      NSLog(@"%@", [obj objectForKey:@"name"]);
+                                  }
+                                  
+                                  FBGraphObject *nextpage =[albums objectForKey:@"paging"];
+                                  NSString *nextPageURL = [nextpage objectForKey:@"next"];
+                                  
+                                  NSLog(@"%@", nextPageURL);
+                                  NSString *subpath = [nextPageURL substringFromIndex:[@"https://graph.facebook.com/100002061333915" length]];
+                                  NSString *path = [@"/me" stringByAppendingString:subpath];
+                                  [self makeRequestForUserDataWithPath:path];
+                                  
                               }
                           }
-                          ];
+     ];
+}
+
+-(void)makeRequestForUserData
+{
+    [self makeRequestForUserDataWithPath:@"/me?fields=albums.fields(name)"];
 }
 
 @end
