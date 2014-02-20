@@ -23,6 +23,7 @@
 		447CB42A18A5F29F00EC0012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 447CB42818A5F29F00EC0012 /* InfoPlist.strings */; };
 		447CB42C18A5F29F00EC0012 /* FacebookAlbumSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CB42B18A5F29F00EC0012 /* FacebookAlbumSampleTests.m */; };
 		447CB43618A5F35000EC0012 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB43518A5F35000EC0012 /* FacebookSDK.framework */; };
+		449AB91E18B58A380093C495 /* FASAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 449AB91D18B58A380093C495 /* FASAlbum.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		447CB42918A5F29F00EC0012 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		447CB42B18A5F29F00EC0012 /* FacebookAlbumSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FacebookAlbumSampleTests.m; sourceTree = "<group>"; };
 		447CB43518A5F35000EC0012 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		449AB91C18B58A380093C495 /* FASAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASAlbum.h; sourceTree = "<group>"; };
+		449AB91D18B58A380093C495 /* FASAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASAlbum.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 				447CB41618A5F29F00EC0012 /* FASViewController.m */,
 				447CB41818A5F29F00EC0012 /* Images.xcassets */,
 				447CB40418A5F29F00EC0012 /* Supporting Files */,
+				449AB91C18B58A380093C495 /* FASAlbum.h */,
+				449AB91D18B58A380093C495 /* FASAlbum.m */,
 			);
 			path = FacebookAlbumSample;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				449AB91E18B58A380093C495 /* FASAlbum.m in Sources */,
 				447CB40A18A5F29F00EC0012 /* main.m in Sources */,
 				447CB41718A5F29F00EC0012 /* FASViewController.m in Sources */,
 				447CB40E18A5F29F00EC0012 /* FASAppDelegate.m in Sources */,

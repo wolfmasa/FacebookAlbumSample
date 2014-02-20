@@ -18,6 +18,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.albumList = [NSMutableArray new];
+    [self.albumListView setDelegate:self];
+    [self.albumListView setDataSource:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,6 +88,31 @@
                           }];
 }
 
+-(void)parseAlbumFBGraphObject:(FBGraphObject*)albums
+{
+    
+    NSMutableArray *data = [albums objectForKey:@"data"];
+    for (NSInteger i=0; i<data.count; i++) {
+        FBGraphObject *obj = [data objectAtIndex:i];
+        NSLog(@"%@", [obj objectForKey:@"name"]);
+        
+        FASAlbum *album = [[FASAlbum alloc]initWithFBObject:obj];
+        [album setName:[obj objectForKey:@"name"]];
+        [album setAlbumId:[obj objectForKey:@"id"]];
+        [self getAlbumDataWithFacebookID:album.albumId];
+        [self.albumList addObject:album];
+    }
+    
+    FBGraphObject *nextpage =[albums objectForKey:@"paging"];
+    NSString *nextPageURL = [nextpage objectForKey:@"next"];
+    
+    NSLog(@"%@", nextPageURL);
+    NSString *path = [nextPageURL substringFromIndex:[@"https://graph.facebook.com" length]];
+    //NSString *path = [@"/me" stringByAppendingString:subpath];
+    [self makeRequestForUserDataWithPath:path];
+}
+
+//URLの文字列を受け取って、SDK経由でアルバム一覧のFBGraphObjectを取得する
 -(void)makeRequestForUserDataWithPath:(NSString*)url
 {
     NSLog(@"URL:%@", url);
@@ -92,24 +121,54 @@
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               NSLog(@"call");
                               if (!error){
-                                  //NSError *returnError;
-                                  FBGraphObject *albums = [result objectForKey:@"albums"];
-                                  
-                                  NSMutableArray *data = [albums objectForKey:@"data"];
-                                  for (NSInteger i=0; i<data.count; i++) {
-                                      FBGraphObject *obj = [data objectAtIndex:i];
-                                      NSLog(@"%@", [obj objectForKey:@"name"]);
+                                  if([result objectForKey:@"data"] == nil)
+                                  {
+                                      //最初のページはAlbumの中にある
+                                      result = [result objectForKey:@"albums"];
                                   }
-                                  
-                                  FBGraphObject *nextpage =[albums objectForKey:@"paging"];
-                                  NSString *nextPageURL = [nextpage objectForKey:@"next"];
-                                  
-                                  NSLog(@"%@", nextPageURL);
-                                  NSString *subpath = [nextPageURL substringFromIndex:[@"https://graph.facebook.com/100002061333915" length]];
-                                  NSString *path = [@"/me" stringByAppendingString:subpath];
-                                  [self makeRequestForUserDataWithPath:path];
-                                  
+                                  else
+                                  {
+                                      //これを書かないと再帰的に全てのアルバムを取得しに行く。
+                                      result = nil;
+                                  }
+                                  [self parseAlbumFBGraphObject:result];
                               }
+                              
+                              [self.albumListView reloadData];
+                          }
+     ];
+}
+
+//URLの文字列を受け取って、SDK経由でアルバムのFBGraphObjectを取得する
+-(void)getAlbumDataWithFacebookID:(NSString*)albumId
+{
+    NSString *url = [NSString stringWithFormat:@"/%@/photos", albumId];
+    NSLog(@"URL:%@", url);
+    // Request the permissions the user currently has
+    [FBRequestConnection startWithGraphPath:url
+                          completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
+                              NSLog(@"call");
+                              if (!error){
+                                  NSMutableArray *array = [result objectForKey:@"data"];
+                                  NSLog(@"%@", array);
+                                  //for (FBGraphObject* obj in array) {
+                                  FBGraphObject *obj = (FBGraphObject*)[array objectAtIndex:0];
+                                  {
+                                      NSString *pictureUrl = [obj objectForKey:@"picture"];//source
+                                      
+                                      NSLog(@"%@", pictureUrl);
+                                      
+                                      NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureUrl]];
+                                      [request setHTTPMethod:@"GET"];
+                                      NSURLResponse *response = nil;
+                                      NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+                                      
+                                      self.pic.image =[UIImage imageWithData:data];
+                                  }
+//                                  [self parseAlbumFBGraphObject:result];
+                              }
+                              
+                              [self.albumListView reloadData];
                           }
      ];
 }
@@ -119,4 +178,21 @@
     [self makeRequestForUserDataWithPath:@"/me?fields=albums.fields(name)"];
 }
 
+#pragma mark UITableView
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.albumList count];
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *newCell = [UITableViewCell new];
+    FASAlbum *a = (FASAlbum *)[self.albumList objectAtIndex:indexPath.row];
+    [newCell textLabel].text = a.name;
+    return newCell;
+}
+
+- (IBAction)pushNext:(id)sender {
+}
 @end

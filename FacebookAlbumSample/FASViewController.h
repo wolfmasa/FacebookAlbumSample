@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "FASAlbum.h"
 
-@interface FASViewController : UIViewController
+@interface FASViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *albumGetButton;
 - (IBAction)getAlbumList:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *albumListView;
+
+@property(nonatomic) NSMutableArray *albumList;
+
+//for debug
+- (IBAction)pushNext:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *pic;
 
 @end
