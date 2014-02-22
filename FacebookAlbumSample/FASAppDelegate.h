@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FASViewController.h"
+#import "FASAlbumThumbnailView.h"
 
 @interface FASAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property(nonatomic, retain) FASViewController* sharedViewController;
+@property(nonatomic, retain) FASAlbumThumbnailView* sharedAlbumThumbnailView;
 
 @end

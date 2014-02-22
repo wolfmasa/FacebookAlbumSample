@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FASAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "FASAlbum.h"
 

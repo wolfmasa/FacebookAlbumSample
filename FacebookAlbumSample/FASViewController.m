@@ -22,6 +22,7 @@
     self.albumList = [NSMutableArray new];
     [self.albumListView setDelegate:self];
     [self.albumListView setDataSource:self];
+    
 }
 
 - (void)didReceiveMemoryWarning
