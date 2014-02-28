@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FASAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "FASDataManager.h"
 #import "FASAlbum.h"
 
 @interface FASViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
@@ -16,7 +17,7 @@
 - (IBAction)getAlbumList:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *albumListView;
 
-@property(nonatomic) NSMutableArray *albumList;
+@property(nonatomic) FASDataManager *dataManager;
 
 //for debug
 - (IBAction)pushNext:(id)sender;

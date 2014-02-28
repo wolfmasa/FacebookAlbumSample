@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FASAlbum.h"
 
-@interface FASAlbumThumbnailView : UIView<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface FASAlbumThumbnailView : UIViewController
 
-@property(nonatomic, retain)FASAlbum *album;
-
-@property(nonatomic, retain)NSMutableArray *images;//UIImages
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollection;
+
+@property id delegateTemp;
 
 @end

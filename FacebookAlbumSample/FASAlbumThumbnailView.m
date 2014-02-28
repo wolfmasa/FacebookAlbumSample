@@ -10,19 +10,14 @@
 
 @implementation FASAlbumThumbnailView
 
-- (id)initWithFrame:(CGRect)frame
+- (void)viewDidLoad
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    [super viewDidLoad];
+    self.thumbnailCollection.delegate = self.delegateTemp;
+    self.thumbnailCollection.dataSource = self.delegateTemp;
+    [self.thumbnailCollection reloadData];
 }
 
--(void)setAlbum:(FASAlbum *)album
-{
-    
-}
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -19,7 +19,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.albumList = [NSMutableArray new];
+    self.dataManager = [FASDataManager new];
+    self.dataManager.albums = [NSMutableArray new];
     [self.albumListView setDelegate:self];
     [self.albumListView setDataSource:self];
     
@@ -100,8 +101,11 @@
         FASAlbum *album = [[FASAlbum alloc]initWithFBObject:obj];
         [album setName:[obj objectForKey:@"name"]];
         [album setAlbumId:[obj objectForKey:@"id"]];
-        [self getAlbumDataWithFacebookID:album.albumId];
-        [self.albumList addObject:album];
+        
+        [self getAlbumDataWithFacebookID:[NSString stringWithFormat:@"/%@/photos", album.albumId]];
+        
+        [self.dataManager.albums addObject:album];
+        break;
     }
     
     FBGraphObject *nextpage =[albums objectForKey:@"paging"];
@@ -140,10 +144,19 @@
      ];
 }
 
-//URLの文字列を受け取って、SDK経由でアルバムのFBGraphObjectを取得する
--(void)getAlbumDataWithFacebookID:(NSString*)albumId
+-(UIImage*)getPhoto:(NSString*)url
 {
-    NSString *url = [NSString stringWithFormat:@"/%@/photos", albumId];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"GET"];
+    NSURLResponse *response = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    
+    return [UIImage imageWithData:data];
+}
+
+//URLの文字列を受け取って、SDK経由でアルバムのFBGraphObjectを取得する
+-(void)getAlbumDataWithFacebookID:(NSString*)url
+{
     NSLog(@"URL:%@", url);
     // Request the permissions the user currently has
     [FBRequestConnection startWithGraphPath:url
@@ -159,14 +172,13 @@
                                       
                                       NSLog(@"%@", pictureUrl);
                                       
-                                      NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pictureUrl]];
-                                      [request setHTTPMethod:@"GET"];
-                                      NSURLResponse *response = nil;
-                                      NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+                                      FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:0];
+                                      FASPhoto *photo = [FASPhoto new];
+                                      photo.url = pictureUrl;
+                                      photo.thumbnail =[self getPhoto:pictureUrl];
+                                      [album.photos addObject:photo];
                                       
-                                      self.pic.image =[UIImage imageWithData:data];
                                   }
-//                                  [self parseAlbumFBGraphObject:result];
                               }
                               
                               [self.albumListView reloadData];
@@ -183,17 +195,25 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.albumList count];
+    return [self.dataManager.albums count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *newCell = [UITableViewCell new];
-    FASAlbum *a = (FASAlbum *)[self.albumList objectAtIndex:indexPath.row];
+    FASAlbum *a = (FASAlbum *)[self.dataManager.albums objectAtIndex:indexPath.row];
     [newCell textLabel].text = a.name;
     return newCell;
 }
 
 - (IBAction)pushNext:(id)sender {
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
+    thumbView.delegateTemp = self.dataManager;
+    //[thumbView.thumbnailCollection setDelegate:self.dataManager];
+    //[thumbView.thumbnailCollection setDataSource:self.dataManager];
+    
+    [self.navigationController pushViewController:thumbView animated:YES];
 }
 @end

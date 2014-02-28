@@ -16,6 +16,8 @@
     if (self) {
         self.fbObject = fb;
     }
+    
+    self.photos = [NSMutableArray new];
     return self;
 }
 
