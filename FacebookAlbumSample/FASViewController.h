@@ -11,6 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "FASDataManager.h"
 #import "FASAlbum.h"
+#import "FASFacebookConnection.h"
 
 @interface FASViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *albumGetButton;
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *albumListView;
 
 @property(nonatomic) FASDataManager *dataManager;
+@property(nonatomic) FASFacebookConnection *fb;
 
 //for debug
 - (IBAction)pushNext:(id)sender;
