@@ -28,6 +28,7 @@
 		44D0F0BA18C0C8E200DEEE7D /* FASDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D0F0B918C0C8E200DEEE7D /* FASDataManager.m */; };
 		44D0F0BD18C0CF5D00DEEE7D /* FASPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D0F0BC18C0CF5D00DEEE7D /* FASPhoto.m */; };
 		44D94F0918B5A78300C51E1B /* FASAlbumThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D94F0818B5A78300C51E1B /* FASAlbumThumbnailView.m */; };
+		44EB46DA18C634BD00C57AF2 /* FASPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EB46D918C634BD00C57AF2 /* FASPhotoCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		44D0F0BC18C0CF5D00DEEE7D /* FASPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASPhoto.m; sourceTree = "<group>"; };
 		44D94F0718B5A78300C51E1B /* FASAlbumThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASAlbumThumbnailView.h; sourceTree = "<group>"; };
 		44D94F0818B5A78300C51E1B /* FASAlbumThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASAlbumThumbnailView.m; sourceTree = "<group>"; };
+		44EB46D818C634BD00C57AF2 /* FASPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASPhotoCell.h; sourceTree = "<group>"; };
+		44EB46D918C634BD00C57AF2 /* FASPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASPhotoCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,8 @@
 				44D0F0BC18C0CF5D00DEEE7D /* FASPhoto.m */,
 				44AAED5F18C4E10F0080E131 /* FASFacebookConnection.h */,
 				44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */,
+				44EB46D818C634BD00C57AF2 /* FASPhotoCell.h */,
+				44EB46D918C634BD00C57AF2 /* FASPhotoCell.m */,
 			);
 			path = FacebookAlbumSample;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				447CB40E18A5F29F00EC0012 /* FASAppDelegate.m in Sources */,
 				44AAED6118C4E10F0080E131 /* FASFacebookConnection.m in Sources */,
 				44D0F0BD18C0CF5D00DEEE7D /* FASPhoto.m in Sources */,
+				44EB46DA18C634BD00C57AF2 /* FASPhotoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

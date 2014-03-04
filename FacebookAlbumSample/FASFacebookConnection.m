@@ -91,7 +91,7 @@
                                   else
                                   {
                                       //これを書かないと再帰的に全てのアルバムを取得しに行く。
-                                      result = nil;
+                                      //result = nil;
                                   }
                                   [self parseAlbumFBGraphObject:result];
                               }
@@ -105,6 +105,7 @@
 {
     
     NSMutableArray *data = [albums objectForKey:@"data"];
+    //現在のページに書いてあるアルバム名一覧を取得する
     for (NSInteger i=0; i<data.count; i++) {
         FBGraphObject *obj = [data objectAtIndex:i];
         NSLog(@"%@", [obj objectForKey:@"name"]);
@@ -113,21 +114,35 @@
         [album setName:[obj objectForKey:@"name"]];
         [album setAlbumId:[obj objectForKey:@"id"]];
         
-        [self getAlbumDataWithFacebookID:[NSString stringWithFormat:@"/%@/photos", album.albumId]];
+        
         
         [self.dataManager.albums addObject:album];
-        break;
     }
     
     FBGraphObject *nextpage =[albums objectForKey:@"paging"];
     NSString *nextPageURL = [nextpage objectForKey:@"next"];
     
+    //次のページをセットする
     NSLog(@"%@", nextPageURL);
-    NSString *path = [nextPageURL substringFromIndex:[@"https://graph.facebook.com" length]];
-    //NSString *path = [@"/me" stringByAppendingString:subpath];
-    [self getUserDataWithGraphPath:path];
+    self.dataManager.nextPageGraphPath = [nextPageURL substringFromIndex:[@"https://graph.facebook.com" length]];
 }
 
+
+-(void)getAlbumData:(NSString*)albumId
+{
+    [self getAlbumDataWithFacebookID:[NSString stringWithFormat:@"/%@/photos", albumId]];
+}
+
+-(BOOL)getNextAlbumPage
+{
+    if(self.dataManager.nextPageGraphPath != nil)
+    {
+        [self getUserDataWithGraphPath:self.dataManager.nextPageGraphPath];
+        return YES;
+    }
+    else
+        return NO;
+}
 
 -(UIImage*)getPhoto:(NSString*)url
 {
@@ -150,8 +165,8 @@
                               if (!error){
                                   NSMutableArray *array = [result objectForKey:@"data"];
                                   NSLog(@"%@", array);
-                                  //for (FBGraphObject* obj in array) {
-                                  FBGraphObject *obj = (FBGraphObject*)[array objectAtIndex:0];
+                                  for (FBGraphObject* obj in array)
+                                  //FBGraphObject *obj = (FBGraphObject*)[array objectAtIndex:0];
                                   {
                                       NSString *pictureUrl = [obj objectForKey:@"picture"];//source
                                       

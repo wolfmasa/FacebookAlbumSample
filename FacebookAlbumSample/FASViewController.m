@@ -66,9 +66,23 @@
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
+    
+    FASAlbum *album = [self.dataManager.albums objectAtIndex:indexPath.row];
+    [self.fb getAlbumData:album.albumId];
+    
     thumbView.delegateTemp = self.dataManager;
     
     [self.navigationController pushViewController:thumbView animated:YES];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%d <=> %d", indexPath.row, [self.dataManager.albums count]);
+    if(indexPath.row+1 >= [self.dataManager.albums count])
+    {
+        if([self.fb getNextAlbumPage])
+            [self.albumListView reloadData];
+    }
 }
 
 #pragma mark Button

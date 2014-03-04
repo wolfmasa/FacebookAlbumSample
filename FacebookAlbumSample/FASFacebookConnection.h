@@ -16,5 +16,7 @@
 @property(nonatomic)UITableView* reloadTarget;
 -(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager;
 -(void)startFacebookConnection;
+-(BOOL)getNextAlbumPage;
+-(void)getAlbumData:(NSString*)albumId;
 
 @end

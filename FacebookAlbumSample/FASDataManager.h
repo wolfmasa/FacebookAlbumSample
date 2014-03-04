@@ -12,6 +12,6 @@
 @interface FASDataManager : NSObject<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property(retain,nonatomic)NSMutableArray* albums;
-
+@property NSString* nextPageGraphPath;
 
 @end

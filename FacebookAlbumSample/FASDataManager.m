@@ -10,6 +10,7 @@
 
 @implementation FASDataManager
 
+
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FASAlbum* album = (FASAlbum*)[self.albums objectAtIndex:0];
