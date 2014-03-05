@@ -96,7 +96,7 @@
                                   [self parseAlbumFBGraphObject:result];
                               }
                               
-                              [self.reloadTarget reloadData];
+                              [self.reloadTableTarget reloadData];
                           }
      ];
 }
@@ -181,7 +181,7 @@
                                   }
                               }
                               
-                              [self.reloadTarget reloadData];
+                              [self.reloadCollectionTarget reloadData];
                           }
      ];
 }

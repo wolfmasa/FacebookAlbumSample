@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001697E018C6D59E004E3A3D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 001697DF18C6D59E004E3A3D /* FacebookSDK.framework */; };
 		447CB3FE18A5F29F00EC0012 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB3FD18A5F29F00EC0012 /* Foundation.framework */; };
 		447CB40018A5F29F00EC0012 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB3FF18A5F29F00EC0012 /* CoreGraphics.framework */; };
 		447CB40218A5F29F00EC0012 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB40118A5F29F00EC0012 /* UIKit.framework */; };
@@ -22,7 +23,6 @@
 		447CB42218A5F29F00EC0012 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB40118A5F29F00EC0012 /* UIKit.framework */; };
 		447CB42A18A5F29F00EC0012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 447CB42818A5F29F00EC0012 /* InfoPlist.strings */; };
 		447CB42C18A5F29F00EC0012 /* FacebookAlbumSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CB42B18A5F29F00EC0012 /* FacebookAlbumSampleTests.m */; };
-		447CB43618A5F35000EC0012 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB43518A5F35000EC0012 /* FacebookSDK.framework */; };
 		449AB91E18B58A380093C495 /* FASAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 449AB91D18B58A380093C495 /* FASAlbum.m */; };
 		44AAED6118C4E10F0080E131 /* FASFacebookConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */; };
 		44D0F0BA18C0C8E200DEEE7D /* FASDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D0F0B918C0C8E200DEEE7D /* FASDataManager.m */; };
@@ -42,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001697DF18C6D59E004E3A3D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		447CB3FA18A5F29F00EC0012 /* FacebookAlbumSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAlbumSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447CB3FD18A5F29F00EC0012 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		447CB3FF18A5F29F00EC0012 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				447CB43618A5F35000EC0012 /* FacebookSDK.framework in Frameworks */,
+				001697E018C6D59E004E3A3D /* FacebookSDK.framework in Frameworks */,
 				447CB40018A5F29F00EC0012 /* CoreGraphics.framework in Frameworks */,
 				447CB40218A5F29F00EC0012 /* UIKit.framework in Frameworks */,
 				447CB3FE18A5F29F00EC0012 /* Foundation.framework in Frameworks */,
@@ -126,6 +127,7 @@
 		447CB3FC18A5F29F00EC0012 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				001697DF18C6D59E004E3A3D /* FacebookSDK.framework */,
 				447CB43518A5F35000EC0012 /* FacebookSDK.framework */,
 				447CB3FD18A5F29F00EC0012 /* Foundation.framework */,
 				447CB3FF18A5F29F00EC0012 /* CoreGraphics.framework */,
@@ -436,6 +438,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/masa/Documents/FacebookSDK,
+					/Users/icp223g/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FacebookAlbumSample/FacebookAlbumSample-Prefix.pch";
@@ -453,6 +456,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/masa/Documents/FacebookSDK,
+					/Users/icp223g/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FacebookAlbumSample/FacebookAlbumSample-Prefix.pch";

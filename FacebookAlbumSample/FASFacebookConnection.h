@@ -13,7 +13,8 @@
 @interface FASFacebookConnection : NSObject
 
 @property(weak, nonatomic)FASDataManager* dataManager;
-@property(nonatomic)UITableView* reloadTarget;
+@property(nonatomic)UITableView* reloadTableTarget;
+@property(nonatomic)UICollectionView* reloadCollectionTarget;
 -(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager;
 -(void)startFacebookConnection;
 -(BOOL)getNextAlbumPage;

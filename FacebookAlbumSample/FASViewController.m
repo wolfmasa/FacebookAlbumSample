@@ -20,13 +20,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.dataManager = [FASDataManager new];
-    self.dataManager.albums = [NSMutableArray new];
     
     self.fb = [[FASFacebookConnection alloc]initWithDataManager:self.dataManager];
-    [self.fb setReloadTarget:self.albumListView];
+    [self.fb setReloadTableTarget:self.albumListView];
     
     [self.albumListView setDelegate:self];
-    [self.albumListView setDataSource:self];
+    [self.albumListView setDataSource:self.dataManager];
     
 }
 
@@ -49,25 +48,13 @@
 
 #pragma mark UITableView
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.dataManager.albums count];
-}
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *newCell = [UITableViewCell new];
-    FASAlbum *a = (FASAlbum *)[self.dataManager.albums objectAtIndex:indexPath.row];
-    [newCell textLabel].text = a.name;
-    return newCell;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
     
     FASAlbum *album = [self.dataManager.albums objectAtIndex:indexPath.row];
+    [self.fb setReloadCollectionTarget:thumbView.thumbnailCollection];
     [self.fb getAlbumData:album.albumId];
     
     thumbView.delegateTemp = self.dataManager;

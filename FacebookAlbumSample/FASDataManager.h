@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FASAlbum.h"
 
-@interface FASDataManager : NSObject<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface FASDataManager : NSObject<UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource>
 
 @property(retain,nonatomic)NSMutableArray* albums;
 @property NSString* nextPageGraphPath;
