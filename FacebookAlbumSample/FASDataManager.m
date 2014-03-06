@@ -17,24 +17,24 @@
     self = [super init];
     if (self) {
         self.albums = [NSMutableArray new];
+        self.activeAlbumIndex = 0;
     }
     return self;
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FASAlbum* album = (FASAlbum*)[self.albums objectAtIndex:0];
+    FASAlbum* album = (FASAlbum*)[self.albums objectAtIndex:self.activeAlbumIndex];
     FASPhoto* photo = [album.photos objectAtIndex:indexPath.row];
     
-    UICollectionViewCell *cell = [UICollectionViewCell new];
+    FASPhotoCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
 
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:photo.thumbnail];
-    cell.backgroundView = imageView;
+    cell.thumbnail.image = photo.thumbnail;
     return cell;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    FASAlbum* album = (FASAlbum*)[self.albums objectAtIndex:0];
+    FASAlbum* album = (FASAlbum*)[self.albums objectAtIndex:self.activeAlbumIndex];
     return [album.photos count];
 }
 

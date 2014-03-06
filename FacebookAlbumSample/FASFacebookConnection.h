@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "FASAlbumThumbnailView.h"
 #import "FASDataManager.h"
 
 @interface FASFacebookConnection : NSObject
 
 @property(weak, nonatomic)FASDataManager* dataManager;
 @property(nonatomic)UITableView* reloadTableTarget;
-@property(nonatomic)UICollectionView* reloadCollectionTarget;
+@property(nonatomic)FASAlbumThumbnailView* reloadCollectionTarget;
 -(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager;
 -(void)startFacebookConnection;
 -(BOOL)getNextAlbumPage;

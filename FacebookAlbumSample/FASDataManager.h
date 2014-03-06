@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "FASAlbum.h"
+#import "FASPhotoCell.h"
 
 @interface FASDataManager : NSObject<UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource>
 
 @property(retain,nonatomic)NSMutableArray* albums;
+@property NSInteger activeAlbumIndex;
 @property NSString* nextPageGraphPath;
 
 @end

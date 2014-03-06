@@ -181,7 +181,7 @@
                                   }
                               }
                               
-                              [self.reloadCollectionTarget reloadData];
+                              [self.reloadCollectionTarget.thumbnailCollection reloadData];
                           }
      ];
 }
