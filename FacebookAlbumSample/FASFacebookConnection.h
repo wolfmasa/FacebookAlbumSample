@@ -17,8 +17,18 @@
 @property(nonatomic)UITableView* reloadTableTarget;
 @property(nonatomic)FASAlbumThumbnailView* reloadCollectionTarget;
 -(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager;
+
 -(void)startFacebookConnection;
 -(BOOL)getNextAlbumPage;
 -(void)getAlbumData:(NSString*)albumId;
+
+
+@property NSString *nextAlbumListGraphPath;
+@property NSString *nextPhotoListGraphPath;
+
+-(BOOL)getNextAlbumList;
+-(BOOL)getNextPhotoList;
+-(BOOL)getThumbnailImage:(FASPhoto*)photo;
+-(BOOL)getFullImage:(FASPhoto*)photo;
 
 @end

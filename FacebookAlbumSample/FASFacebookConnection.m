@@ -13,6 +13,9 @@
 -(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager
 {
     self.dataManager = manager;
+    
+    self.nextAlbumListGraphPath = nil;
+    self.nextPhotoListGraphPath = nil;
     return [super init];
 }
 
@@ -108,13 +111,9 @@
     //現在のページに書いてあるアルバム名一覧を取得する
     for (NSInteger i=0; i<data.count; i++) {
         FBGraphObject *obj = [data objectAtIndex:i];
-        NSLog(@"%@", [obj objectForKey:@"name"]);
-        
         FASAlbum *album = [[FASAlbum alloc]initWithFBObject:obj];
         [album setName:[obj objectForKey:@"name"]];
         [album setAlbumId:[obj objectForKey:@"id"]];
-        
-        
         
         [self.dataManager.albums addObject:album];
     }
@@ -125,6 +124,7 @@
     //次のページをセットする
     NSLog(@"%@", nextPageURL);
     self.dataManager.nextPageGraphPath = [nextPageURL substringFromIndex:[@"https://graph.facebook.com" length]];
+    self.nextAlbumListGraphPath = [nextPageURL substringFromIndex:[@"https://graph.facebook.com" length]];
 }
 
 
@@ -186,6 +186,90 @@
      ];
 }
 
+#pragma mark New Interface
 
+-(BOOL)getNextAlbumList
+{
+    if(self.nextAlbumListGraphPath == nil)
+        self.nextAlbumListGraphPath = @"/me?fields=albums.fields(name)";
+    
+    __block BOOL flag = YES;
+    __block BOOL ret = NO;
+    
+    // Request the permissions the user currently has
+    [FBRequestConnection startWithGraphPath:self.nextAlbumListGraphPath
+                          completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
+                              if (!error){
+                                  if([result objectForKey:@"data"] == nil)
+                                  {
+                                      //最初のページはAlbumの中にある
+                                      result = [result objectForKey:@"albums"];
+                                  }
+                                  [self parseAlbumFBGraphObject:result];
+                                  ret = YES;
+                              }
+                              
+                              [self.reloadTableTarget reloadData];
+                              flag = NO;
+                          }];
+    
+    //非同期で実行されてしまうので、待ち合わせ
+    while (flag) sleep(500);
+
+    return ret;
+}
+
+-(BOOL)getNextPhotoList
+{
+   if(self.nextPhotoListGraphPath == nil)
+   {
+       FASAlbum *album = [self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
+       self.nextPhotoListGraphPath = [NSString stringWithFormat:@"/%@/photos", album.albumId];
+   }
+    __block BOOL flag = YES;
+    __block BOOL ret = NO;
+    
+    // Request the permissions the user currently has
+    [FBRequestConnection startWithGraphPath:self.nextPhotoListGraphPath
+                          completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
+                              if (!error){
+                                  NSMutableArray *array = [result objectForKey:@"data"];
+                                  for (FBGraphObject* obj in array)
+                                  {
+                                      NSString *pictureUrl = [obj objectForKey:@"picture"];//source
+                                      
+                                      FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
+                                      FASPhoto *photo = [FASPhoto new];
+                                      
+                                      //TODO
+                                      photo.url = pictureUrl;
+                                      photo.facebookId = hogehoge;
+                                      photo.thumbnail =[self getPhoto:pictureUrl];
+                                      [album.photos addObject:photo];
+                                      
+                                  }
+                                  ret = YES;
+                              }
+                              
+                              [self.reloadCollectionTarget.thumbnailCollection reloadData];
+                              flag = NO;
+                          }
+     ];
+    
+    //非同期で実行されてしまうので、待ち合わせ
+    while (flag) sleep(500);
+    
+    return ret;
+}
+
+-(BOOL)getThumbnailImage:(FASPhoto*)photo
+{
+    return YES;
+}
+
+-(BOOL)getFullImage:(FASPhoto*)photo
+{
+    return YES;
+}
 
 @end
