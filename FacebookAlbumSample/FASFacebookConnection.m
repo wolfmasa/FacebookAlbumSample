@@ -169,13 +169,18 @@
                                   //FBGraphObject *obj = (FBGraphObject*)[array objectAtIndex:0];
                                   {
                                       NSString *pictureUrl = [obj objectForKey:@"picture"];//source
+                                      NSString *graphId = [obj objectForKey:@"id"];
+                                      //NSMutableArray *images =[obj objectForKey:@"images"];
+                                      NSString *icon = [obj objectForKey:@"icon"];
                                       
                                       NSLog(@"%@", pictureUrl);
                                       
                                       FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:0];
                                       FASPhoto *photo = [FASPhoto new];
-                                      photo.url = pictureUrl;
-                                      photo.thumbnail =[self getPhoto:pictureUrl];
+                                      photo.thumbnailUrl = icon;
+                                      photo.imageUrl = pictureUrl;
+                                      photo.graphId = graphId;
+                                      photo.thumbnail =[self getPhoto:icon];
                                       [album.photos addObject:photo];
                                       
                                   }
@@ -237,14 +242,17 @@
                                   for (FBGraphObject* obj in array)
                                   {
                                       NSString *pictureUrl = [obj objectForKey:@"picture"];//source
+                                      NSString *graphId = [obj objectForKey:@"id"];
+                                      NSString *icon = [obj objectForKey:@"icon"];
                                       
                                       FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
                                       FASPhoto *photo = [FASPhoto new];
                                       
-                                      //TODO
-                                      photo.url = pictureUrl;
-                                      photo.facebookId = hogehoge;
-                                      photo.thumbnail =[self getPhoto:pictureUrl];
+                                      //TODO リストを取得するタイミングでは画像はいらない？
+                                      photo.imageUrl = pictureUrl;
+                                      photo.thumbnailUrl = icon;
+                                      photo.graphId = graphId;
+                                      photo.thumbnail =[self getPhoto:icon];
                                       [album.photos addObject:photo];
                                       
                                   }
@@ -264,7 +272,11 @@
 
 -(BOOL)getThumbnailImage:(FASPhoto*)photo
 {
-    return YES;
+    photo.thumbnail = [self getPhoto:photo.thumbnailUrl];
+    if (photo.thumbnail != nil)
+        return YES;
+    else
+        return NO;
 }
 
 -(BOOL)getFullImage:(FASPhoto*)photo

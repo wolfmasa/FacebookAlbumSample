@@ -11,7 +11,9 @@
 @interface FASPhoto : NSObject
 
 @property(nonatomic,retain)UIImage *thumbnail;
-@property(nonatomic, retain)NSString *url;
-@property(nonatomic, retain)NSString *facebookId;
+@property(nonatomic, retain)NSString *thumbnailUrl;
+@property(nonatomic, retain)UIImage *image;
+@property(nonatomic, retain)NSString *imageUrl;
+@property(nonatomic, retain)NSString *graphId;
 
 @end
