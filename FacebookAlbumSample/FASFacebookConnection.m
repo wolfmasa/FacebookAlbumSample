@@ -171,16 +171,16 @@
                                       NSString *pictureUrl = [obj objectForKey:@"picture"];//source
                                       NSString *graphId = [obj objectForKey:@"id"];
                                       //NSMutableArray *images =[obj objectForKey:@"images"];
-                                      NSString *icon = [obj objectForKey:@"icon"];
+                                      NSString *source = [obj objectForKey:@"source"];
                                       
                                       NSLog(@"%@", pictureUrl);
                                       
-                                      FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:0];
+                                      FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
                                       FASPhoto *photo = [FASPhoto new];
-                                      photo.thumbnailUrl = icon;
-                                      photo.imageUrl = pictureUrl;
+                                      photo.thumbnailUrl = pictureUrl;
+                                      photo.imageUrl = source;
                                       photo.graphId = graphId;
-                                      photo.thumbnail =[self getPhoto:icon];
+                                      photo.thumbnail =[self getPhoto:photo.thumbnailUrl];
                                       [album.photos addObject:photo];
                                       
                                   }
@@ -243,16 +243,16 @@
                                   {
                                       NSString *pictureUrl = [obj objectForKey:@"picture"];//source
                                       NSString *graphId = [obj objectForKey:@"id"];
-                                      NSString *icon = [obj objectForKey:@"icon"];
+                                      NSString *source = [obj objectForKey:@"source"];
                                       
                                       FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
                                       FASPhoto *photo = [FASPhoto new];
                                       
                                       //TODO リストを取得するタイミングでは画像はいらない？
-                                      photo.imageUrl = pictureUrl;
-                                      photo.thumbnailUrl = icon;
+                                      photo.imageUrl = source;
+                                      photo.thumbnailUrl = pictureUrl;
                                       photo.graphId = graphId;
-                                      photo.thumbnail =[self getPhoto:icon];
+                                      photo.thumbnail =[self getPhoto:photo.thumbnailUrl];
                                       [album.photos addObject:photo];
                                       
                                   }
@@ -265,7 +265,7 @@
      ];
     
     //非同期で実行されてしまうので、待ち合わせ
-    while (flag) sleep(500);
+    while (flag) sleep(1);
     
     return ret;
 }

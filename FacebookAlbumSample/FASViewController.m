@@ -52,12 +52,11 @@
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
-    
-    FASAlbum *album = [self.dataManager.albums objectAtIndex:indexPath.row];
     [self.fb setReloadCollectionTarget:thumbView];
-    [self.fb getAlbumData:album.albumId];
     
     self.dataManager.activeAlbumIndex = indexPath.row;
+    
+    [self.fb getNextPhotoList];
     
     thumbView.delegateTemp = self.dataManager;
     
