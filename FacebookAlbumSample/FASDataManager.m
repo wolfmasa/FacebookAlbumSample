@@ -39,6 +39,7 @@
     return [album.photos count];
 }
 
+
 #pragma mark UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

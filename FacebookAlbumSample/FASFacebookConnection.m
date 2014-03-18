@@ -231,13 +231,13 @@
        FASAlbum *album = [self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
        self.nextPhotoListGraphPath = [NSString stringWithFormat:@"/%@/photos", album.albumId];
    }
-    __block BOOL flag = YES;
     __block BOOL ret = NO;
     
     // Request the permissions the user currently has
     [FBRequestConnection startWithGraphPath:self.nextPhotoListGraphPath
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               if (!error){
+                                  FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
                                   NSMutableArray *array = [result objectForKey:@"data"];
                                   for (FBGraphObject* obj in array)
                                   {
@@ -245,7 +245,7 @@
                                       NSString *graphId = [obj objectForKey:@"id"];
                                       NSString *source = [obj objectForKey:@"source"];
                                       
-                                      FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
+                                      
                                       FASPhoto *photo = [FASPhoto new];
                                       
                                       //TODO リストを取得するタイミングでは画像はいらない？
@@ -256,16 +256,17 @@
                                       [album.photos addObject:photo];
                                       
                                   }
+                                  
+                                  FBGraphObject *paging = [result objectForKey:@"paging"];
+                                  self.nextPhotoListGraphPath = [paging objectForKey:@"next"];
+                                  
+                                  
                                   ret = YES;
                               }
                               
                               [self.reloadCollectionTarget.thumbnailCollection reloadData];
-                              flag = NO;
                           }
      ];
-    
-    //非同期で実行されてしまうので、待ち合わせ
-    while (flag) sleep(1);
     
     return ret;
 }
@@ -281,7 +282,11 @@
 
 -(BOOL)getFullImage:(FASPhoto*)photo
 {
-    return YES;
+    photo.image = [self getPhoto:photo.imageUrl];
+    if (photo.image != nil)
+        return YES;
+    else
+        return NO;
 }
 
 @end
