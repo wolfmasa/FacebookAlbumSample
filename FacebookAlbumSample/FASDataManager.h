@@ -16,4 +16,7 @@
 @property NSInteger activeAlbumIndex;
 @property NSString* nextPageGraphPath;
 
+-(BOOL)changeActiveAlbumIndex:(NSInteger)index;
+-(FASAlbum*)getActiveAlbum;
+
 @end

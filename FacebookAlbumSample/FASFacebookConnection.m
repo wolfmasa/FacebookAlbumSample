@@ -175,7 +175,7 @@
                                       
                                       NSLog(@"%@", pictureUrl);
                                       
-                                      FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
+                                      FASAlbum* album = [self.dataManager getActiveAlbum];
                                       FASPhoto *photo = [FASPhoto new];
                                       photo.thumbnailUrl = pictureUrl;
                                       photo.imageUrl = source;
@@ -193,7 +193,7 @@
 
 #pragma mark New Interface
 
--(BOOL)getNextAlbumList
+-(BOOL)getNextAlbumList:(BOOL)isFirst
 {
     if(self.nextAlbumListGraphPath == nil)
         self.nextAlbumListGraphPath = @"/me?fields=albums.fields(name)";
@@ -223,21 +223,28 @@
 
     return ret;
 }
+  
 
--(BOOL)getNextPhotoList
+-(BOOL)getNextPhotoList:(BOOL)isFirst
 {
-   if(self.nextPhotoListGraphPath == nil)
+    __block BOOL ret = NO;
+   if(isFirst == YES)
    {
-       FASAlbum *album = [self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
+       FASAlbum *album = [self.dataManager getActiveAlbum];
        self.nextPhotoListGraphPath = [NSString stringWithFormat:@"/%@/photos", album.albumId];
    }
-    __block BOOL ret = NO;
+   else if(self.nextPhotoListGraphPath == nil)
+   {
+       ret = YES;
+       return ret;
+   }
+    
     
     // Request the permissions the user currently has
     [FBRequestConnection startWithGraphPath:self.nextPhotoListGraphPath
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               if (!error){
-                                  FASAlbum* album = (FASAlbum*)[self.dataManager.albums objectAtIndex:self.dataManager.activeAlbumIndex];
+                                  FASAlbum* album = [self.dataManager getActiveAlbum];
                                   NSMutableArray *array = [result objectForKey:@"data"];
                                   for (FBGraphObject* obj in array)
                                   {
@@ -265,6 +272,7 @@
                               }
                               
                               [self.reloadCollectionTarget.thumbnailCollection reloadData];
+                              [self performSelectorInBackground:@selector(getNextPhotoList:) withObject:NO];
                           }
      ];
     

@@ -22,10 +22,24 @@
     return self;
 }
 
+-(BOOL)changeActiveAlbumIndex:(NSInteger)index
+{
+    if (self.activeAlbumIndex != index) {
+        self.activeAlbumIndex = index;
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(FASAlbum*)getActiveAlbum
+{
+    return [self.albums objectAtIndex:self.activeAlbumIndex];
+}
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FASAlbum* album = (FASAlbum*)[self.albums objectAtIndex:self.activeAlbumIndex];
+    FASAlbum* album = [self getActiveAlbum];
     FASPhoto* photo = [album.photos objectAtIndex:indexPath.row];
     
     FASPhotoCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
@@ -35,7 +49,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    FASAlbum* album = (FASAlbum*)[self.albums objectAtIndex:self.activeAlbumIndex];
+    FASAlbum* album = [self getActiveAlbum];
     return [album.photos count];
 }
 

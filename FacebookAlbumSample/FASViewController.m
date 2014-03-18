@@ -54,9 +54,7 @@
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
     [self.fb setReloadCollectionTarget:thumbView];
     
-    self.dataManager.activeAlbumIndex = indexPath.row;
-    
-    [self.fb getNextPhotoList];
+    [self.fb getNextPhotoList:[self.dataManager changeActiveAlbumIndex:indexPath.row]];
     
     thumbView.delegateTemp = self.dataManager;
     
@@ -80,8 +78,6 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
     thumbView.delegateTemp = self.dataManager;
-    //[thumbView.thumbnailCollection setDelegate:self.dataManager];
-    //[thumbView.thumbnailCollection setDataSource:self.dataManager];
     
     [self.navigationController pushViewController:thumbView animated:YES];
 }

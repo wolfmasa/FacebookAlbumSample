@@ -26,8 +26,8 @@
 @property NSString *nextAlbumListGraphPath;
 @property NSString *nextPhotoListGraphPath;
 
--(BOOL)getNextAlbumList;
--(BOOL)getNextPhotoList;
+-(BOOL)getNextAlbumList:(BOOL)isFirst;
+-(BOOL)getNextPhotoList:(BOOL)isFirst;
 -(BOOL)getThumbnailImage:(FASPhoto*)photo;
 -(BOOL)getFullImage:(FASPhoto*)photo;
 
