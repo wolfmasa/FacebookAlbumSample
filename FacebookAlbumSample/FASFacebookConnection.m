@@ -77,6 +77,11 @@
     [self getUserDataWithGraphPath:@"/me?fields=albums.fields(name)"];
 }
 
+-(NSString*)parseUrlToGraphPath:(NSString*)url
+{
+    return[url substringFromIndex:[@"https://graph.facebook.com" length]];
+}
+
 //URLの文字列を受け取って、SDK経由でアルバム一覧のFBGraphObjectを取得する
 -(void)getUserDataWithGraphPath:(NSString*)path
 {
@@ -123,8 +128,8 @@
     
     //次のページをセットする
     NSLog(@"%@", nextPageURL);
-    self.dataManager.nextPageGraphPath = [nextPageURL substringFromIndex:[@"https://graph.facebook.com" length]];
-    self.nextAlbumListGraphPath = [nextPageURL substringFromIndex:[@"https://graph.facebook.com" length]];
+    self.dataManager.nextPageGraphPath = [self parseUrlToGraphPath:nextPageURL];
+    self.nextAlbumListGraphPath = [self parseUrlToGraphPath:nextPageURL];
 }
 
 
@@ -223,11 +228,18 @@
 
     return ret;
 }
+
+-(void)kickNext
+{
+    [self getNextPhotoList:NO];
+}
   
 
 -(BOOL)getNextPhotoList:(BOOL)isFirst
 {
     __block BOOL ret = NO;
+    
+    NSLog(@"getNextPhotoList:%d", isFirst);
    if(isFirst == YES)
    {
        FASAlbum *album = [self.dataManager getActiveAlbum];
@@ -265,14 +277,13 @@
                                   }
                                   
                                   FBGraphObject *paging = [result objectForKey:@"paging"];
-                                  self.nextPhotoListGraphPath = [paging objectForKey:@"next"];
-                                  
+                                  self.nextPhotoListGraphPath = [self parseUrlToGraphPath:[paging objectForKey:@"next"]];
                                   
                                   ret = YES;
                               }
                               
                               [self.reloadCollectionTarget.thumbnailCollection reloadData];
-                              [self performSelectorInBackground:@selector(getNextPhotoList:) withObject:NO];
+                              [self performSelectorInBackground:@selector(kickNext:) withObject:nil];
                           }
      ];
     
