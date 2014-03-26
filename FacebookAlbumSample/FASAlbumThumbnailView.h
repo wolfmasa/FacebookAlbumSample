@@ -12,6 +12,7 @@
 @interface FASAlbumThumbnailView : UIViewController
 
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollection;
+@property (weak, nonatomic) IBOutlet UIProgressView *progress;
 
 @property id delegateTemp;
 

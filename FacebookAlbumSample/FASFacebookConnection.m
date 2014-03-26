@@ -233,7 +233,12 @@
 {
     [self getNextPhotoList:NO];
 }
-  
+
+-(void)updateProgress:(NSNumber*)value100
+{
+    NSLog(@"progress:%f", (float)[value100 intValue]/100);
+    self.reloadCollectionTarget.progress.progress = (float)[value100 intValue]/100;
+}
 
 -(BOOL)getNextPhotoList:(BOOL)isFirst
 {
@@ -256,10 +261,16 @@
     [FBRequestConnection startWithGraphPath:self.nextPhotoListGraphPath
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               if (!error){
+                                  NSNumber* progressVal = @0;
+                                  [self performSelectorInBackground:@selector(updateProgress:) withObject:progressVal];
                                   FASAlbum* album = [self.dataManager getActiveAlbum];
                                   NSMutableArray *array = [result objectForKey:@"data"];
+                                  int i=0;
                                   for (FBGraphObject* obj in array)
                                   {
+                                      i++;
+                                      progressVal = [NSNumber numberWithFloat:((float)i*100/[array count])];
+                                      [self performSelectorInBackground:@selector(updateProgress:) withObject:progressVal];
                                       NSString *pictureUrl = [obj objectForKey:@"picture"];//source
                                       NSString *graphId = [obj objectForKey:@"id"];
                                       NSString *source = [obj objectForKey:@"source"];
@@ -283,7 +294,7 @@
                               }
                               
                               [self.reloadCollectionTarget.thumbnailCollection reloadData];
-                              [self performSelectorInBackground:@selector(kickNext:) withObject:nil];
+                              [self performSelectorInBackground:@selector(kickNext) withObject:nil];
                           }
      ];
     

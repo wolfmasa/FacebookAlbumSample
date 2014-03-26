@@ -108,10 +108,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oNa-GQ-G4j">
+                                <rect key="frame" x="0.0" y="60" width="320" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="progress" destination="oNa-GQ-G4j" id="cc7-nT-q2b"/>
                         <outlet property="thumbnailCollection" destination="kXQ-gx-N2L" id="aLk-AU-hkk"/>
                     </connections>
                 </viewController>

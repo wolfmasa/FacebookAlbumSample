@@ -54,6 +54,7 @@
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
     [self.fb setReloadCollectionTarget:thumbView];
     
+    [self.dataManager setActiveAlbumIndex:indexPath.row];
     [self.fb getNextPhotoList:YES];
     
     thumbView.delegateTemp = self.dataManager;
