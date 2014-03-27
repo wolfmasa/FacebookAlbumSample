@@ -16,6 +16,8 @@
     self.thumbnailCollection.delegate = self.delegateTemp;
     self.thumbnailCollection.dataSource = self.delegateTemp;
     [self.thumbnailCollection reloadData];
+    
+    self.progress.progress = 0;
 }
 
 

@@ -236,8 +236,9 @@
 
 -(void)updateProgress:(NSNumber*)value100
 {
-    NSLog(@"progress:%f", (float)[value100 intValue]/100);
-    self.reloadCollectionTarget.progress.progress = (float)[value100 intValue]/100;
+    float progressValue =(float)[value100 intValue]/100;
+    NSLog(@"progress:%f", progressValue);
+    [self.reloadCollectionTarget.progress setProgress:progressValue];
 }
 
 -(BOOL)getNextPhotoList:(BOOL)isFirst
