@@ -58,6 +58,7 @@
     [self.fb getNextPhotoList:YES];
     
     thumbView.dataManager = self.dataManager;
+    thumbView.fb = self.fb;
     
     [self.navigationController pushViewController:thumbView animated:YES];
 }

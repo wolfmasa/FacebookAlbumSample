@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "FASAlbum.h"
 #import "FASDataManager.h"
+#import "FASFacebookConnection.h"
 
 @interface FASAlbumThumbnailView : UIViewController
 
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollection;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
 
-@property FASDataManager *dataManager;
+@property (retain)FASDataManager *dataManager;
+@property (retain)FASFacebookConnection *fb;
 
 @end

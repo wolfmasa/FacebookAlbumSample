@@ -15,7 +15,7 @@
 
 @property(weak, nonatomic)FASDataManager* dataManager;
 @property(nonatomic)UITableView* reloadTableTarget;
-@property(nonatomic)FASAlbumThumbnailView* reloadCollectionTarget;
+@property(retain, nonatomic)FASAlbumThumbnailView* reloadCollectionTarget;
 -(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager;
 
 -(void)startFacebookConnection;

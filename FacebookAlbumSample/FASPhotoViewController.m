@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageView.image = self.image;
     // Do any additional setup after loading the view.
 }
 

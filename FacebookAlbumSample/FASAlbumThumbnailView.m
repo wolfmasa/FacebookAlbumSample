@@ -41,6 +41,7 @@
         FASPhoto *photo = album.photos[selectedIndexPath.row];
         
         FASPhotoViewController *photoView = [segue destinationViewController];
+        [self.fb getFullImage:photo];
         photoView.image = photo.image;
         
     }

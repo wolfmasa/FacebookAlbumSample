@@ -18,8 +18,8 @@
 - (IBAction)getAlbumList:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *albumListView;
 
-@property(nonatomic) FASDataManager *dataManager;
-@property(nonatomic) FASFacebookConnection *fb;
+@property(retain, nonatomic) FASDataManager *dataManager;
+@property(retain, nonatomic) FASFacebookConnection *fb;
 
 //for debug
 - (IBAction)pushNext:(id)sender;

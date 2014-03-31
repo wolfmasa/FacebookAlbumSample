@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FASFacebookConnection.h"
 
 @interface FASPhotoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (weak, nonatomic) UIImage *image;
+@property FASFacebookConnection *fb;
 
 @end

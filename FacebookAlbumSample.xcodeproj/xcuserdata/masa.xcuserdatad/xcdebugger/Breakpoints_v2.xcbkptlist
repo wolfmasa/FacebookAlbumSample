@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FacebookAlbumSample/FASDataManager.m"
-            timestampString = "415642017.429219"
+            filePath = "FacebookAlbumSample/FASAlbumThumbnailView.m"
+            timestampString = "417975592.983703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "-init"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
