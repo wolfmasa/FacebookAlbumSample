@@ -7,14 +7,15 @@
 //
 
 #import "FASAlbumThumbnailView.h"
+#import "FASPhotoViewController.h"
 
 @implementation FASAlbumThumbnailView
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.thumbnailCollection.delegate = self.delegateTemp;
-    self.thumbnailCollection.dataSource = self.delegateTemp;
+    self.thumbnailCollection.delegate = self.dataManager;
+    self.thumbnailCollection.dataSource = self.dataManager;
     [self.thumbnailCollection reloadData];
     
     self.progress.progress = 0;
@@ -29,5 +30,20 @@
     // Drawing code
 }
 */
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+
+    if ([[segue identifier] isEqualToString:@"showPhoto"])
+    {
+        NSIndexPath *selectedIndexPath = [[self.thumbnailCollection indexPathsForSelectedItems] objectAtIndex:0];
+
+        FASAlbum *album = [self.dataManager getActiveAlbum];
+        FASPhoto *photo = album.photos[selectedIndexPath.row];
+        
+        FASPhotoViewController *photoView = [segue destinationViewController];
+        photoView.image = photo.image;
+        
+    }
+}
 
 @end

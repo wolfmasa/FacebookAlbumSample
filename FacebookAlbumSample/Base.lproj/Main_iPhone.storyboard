@@ -103,7 +103,7 @@
                                         <size key="customSize" width="80" height="80"/>
                                         <connections>
                                             <outlet property="thumbnail" destination="HIh-S7-brB" id="bNM-FA-ZSn"/>
-                                            <segue destination="iZf-E5-oiF" kind="push" id="Oxt-Dg-av1"/>
+                                            <segue destination="iZf-E5-oiF" kind="push" identifier="showPhoto" id="Oxt-Dg-av1"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
