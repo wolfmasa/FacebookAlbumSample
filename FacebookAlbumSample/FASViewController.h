@@ -20,6 +20,4 @@
 
 @property(retain, nonatomic) FASDataManager *dataManager;
 
-//for debug
-- (IBAction)pushNext:(id)sender;
 @end

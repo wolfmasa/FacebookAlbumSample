@@ -7,7 +7,7 @@
 //
 
 #import "FASDataManager.h"
-
+#import "FASFacebookConnection.h"
 
 
 @implementation FASDataManager
@@ -59,6 +59,13 @@
 {
     FASAlbum* album = [self getActiveAlbum];
     FASPhoto* photo = [album.photos objectAtIndex:indexPath.row];
+    
+    if([album.photos count]-1 <= indexPath.row)
+    {
+        FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
+        [fb getNextPhotoList:NO];
+    }
+    
     
     FASPhotoCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
 

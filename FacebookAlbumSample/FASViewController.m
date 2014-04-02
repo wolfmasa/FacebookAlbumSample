@@ -51,6 +51,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
@@ -74,14 +76,4 @@
     }
 }
 
-#pragma mark Button
-
-- (IBAction)pushNext:(id)sender {
-    
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
-    thumbView.dataManager = self.dataManager;
-    
-    [self.navigationController pushViewController:thumbView animated:YES];
-}
 @end

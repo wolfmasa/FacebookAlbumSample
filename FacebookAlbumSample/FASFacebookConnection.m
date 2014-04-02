@@ -248,6 +248,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
 {
     float progressValue =(float)[value100 intValue]/100;
     NSLog(@"progress:%f", progressValue);
+    if(progressValue == 1.0) progressValue = 0;
     [self.reloadCollectionTarget.progress setProgress:progressValue];
 }
 
