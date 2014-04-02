@@ -32,10 +32,28 @@
     return NO;
 }
 
+-(FASPhoto*)getActivePhoto
+{
+    FASAlbum *album = [self getActiveAlbum];
+    return album.photos[self.activePhotoIndex];
+}
+
+-(BOOL)changeActivePhotoIndex:(NSInteger)index
+{
+    if (self.activePhotoIndex != index) {
+        self.activePhotoIndex = index;
+        return YES;
+    }
+    
+    return NO;
+}
+
 -(FASAlbum*)getActiveAlbum
 {
     return [self.albums objectAtIndex:self.activeAlbumIndex];
 }
+
+#pragma mark UICollectionView
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {

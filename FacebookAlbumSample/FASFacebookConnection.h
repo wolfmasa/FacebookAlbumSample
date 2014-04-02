@@ -13,15 +13,16 @@
 
 @interface FASFacebookConnection : NSObject
 
++(FASFacebookConnection*)sharedConnection;
+
 @property(weak, nonatomic)FASDataManager* dataManager;
 @property(nonatomic)UITableView* reloadTableTarget;
-@property(retain, nonatomic)FASAlbumThumbnailView* reloadCollectionTarget;
+@property(weak, nonatomic)FASAlbumThumbnailView* reloadCollectionTarget;
 -(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager;
 
 -(void)startFacebookConnection;
 -(BOOL)getNextAlbumPage;
 -(void)getAlbumData:(NSString*)albumId;
-
 
 @property NSString *nextAlbumListGraphPath;
 @property NSString *nextPhotoListGraphPath;

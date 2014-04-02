@@ -21,8 +21,9 @@
     
     self.dataManager = [FASDataManager new];
     
-    self.fb = [[FASFacebookConnection alloc]initWithDataManager:self.dataManager];
-    [self.fb setReloadTableTarget:self.albumListView];
+    FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
+    fb = [fb initWithDataManager:self.dataManager];
+    [fb setReloadTableTarget:self.albumListView];
     
     [self.albumListView setDelegate:self];
     [self.albumListView setDataSource:self.dataManager];
@@ -42,7 +43,7 @@
 }
 
 - (IBAction)getAlbumList:(id)sender {
-    [self.fb startFacebookConnection];
+    [[FASFacebookConnection sharedConnection] startFacebookConnection];
 }
 
 
@@ -50,15 +51,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
-    [self.fb setReloadCollectionTarget:thumbView];
+    [fb setReloadCollectionTarget:thumbView];
     
     [self.dataManager setActiveAlbumIndex:indexPath.row];
-    [self.fb getNextPhotoList:YES];
+    [fb getNextPhotoList:YES];
     
     thumbView.dataManager = self.dataManager;
-    thumbView.fb = self.fb;
     
     [self.navigationController pushViewController:thumbView animated:YES];
 }
@@ -68,7 +69,7 @@
     NSLog(@"%d <=> %d", indexPath.row, [self.dataManager.albums count]);
     if(indexPath.row+1 >= [self.dataManager.albums count])
     {
-        if([self.fb getNextAlbumPage])
+        if([[FASFacebookConnection sharedConnection] getNextAlbumPage])
             [self.albumListView reloadData];
     }
 }

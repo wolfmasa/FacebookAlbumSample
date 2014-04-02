@@ -19,10 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *albumListView;
 
 @property(retain, nonatomic) FASDataManager *dataManager;
-@property(retain, nonatomic) FASFacebookConnection *fb;
 
 //for debug
 - (IBAction)pushNext:(id)sender;
-@property (weak, nonatomic) IBOutlet UIImageView *pic;
-
 @end

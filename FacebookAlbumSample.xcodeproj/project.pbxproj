@@ -70,8 +70,8 @@
 		449AB91D18B58A380093C495 /* FASAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASAlbum.m; sourceTree = "<group>"; };
 		44AAED5F18C4E10F0080E131 /* FASFacebookConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASFacebookConnection.h; sourceTree = "<group>"; };
 		44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASFacebookConnection.m; sourceTree = "<group>"; };
-		44D0F0B818C0C8E200DEEE7D /* FASDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FASDataManager.h; path = FacebookAlbumSample/FASDataManager.h; sourceTree = "<group>"; };
-		44D0F0B918C0C8E200DEEE7D /* FASDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FASDataManager.m; path = FacebookAlbumSample/FASDataManager.m; sourceTree = "<group>"; };
+		44D0F0B818C0C8E200DEEE7D /* FASDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASDataManager.h; sourceTree = "<group>"; };
+		44D0F0B918C0C8E200DEEE7D /* FASDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASDataManager.m; sourceTree = "<group>"; };
 		44D0F0BB18C0CF5D00DEEE7D /* FASPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASPhoto.h; sourceTree = "<group>"; };
 		44D0F0BC18C0CF5D00DEEE7D /* FASPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASPhoto.m; sourceTree = "<group>"; };
 		44D94F0718B5A78300C51E1B /* FASAlbumThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASAlbumThumbnailView.h; sourceTree = "<group>"; };
@@ -108,8 +108,6 @@
 		447CB3F118A5F29E00EC0012 = {
 			isa = PBXGroup;
 			children = (
-				44D0F0B818C0C8E200DEEE7D /* FASDataManager.h */,
-				44D0F0B918C0C8E200DEEE7D /* FASDataManager.m */,
 				447CB40318A5F29F00EC0012 /* FacebookAlbumSample */,
 				447CB42518A5F29F00EC0012 /* FacebookAlbumSampleTests */,
 				447CB3FC18A5F29F00EC0012 /* Frameworks */,
@@ -141,26 +139,15 @@
 		447CB40318A5F29F00EC0012 /* FacebookAlbumSample */ = {
 			isa = PBXGroup;
 			children = (
+				449A071518EC54E4002698D5 /* Communication */,
+				449A071418EC54CD002698D5 /* UI */,
+				449A071318EC54B1002698D5 /* DataClass */,
 				447CB40C18A5F29F00EC0012 /* FASAppDelegate.h */,
 				447CB40D18A5F29F00EC0012 /* FASAppDelegate.m */,
 				447CB40F18A5F29F00EC0012 /* Main_iPhone.storyboard */,
 				447CB41218A5F29F00EC0012 /* Main_iPad.storyboard */,
-				447CB41518A5F29F00EC0012 /* FASViewController.h */,
-				447CB41618A5F29F00EC0012 /* FASViewController.m */,
 				447CB41818A5F29F00EC0012 /* Images.xcassets */,
 				447CB40418A5F29F00EC0012 /* Supporting Files */,
-				449AB91C18B58A380093C495 /* FASAlbum.h */,
-				449AB91D18B58A380093C495 /* FASAlbum.m */,
-				44D94F0718B5A78300C51E1B /* FASAlbumThumbnailView.h */,
-				44D94F0818B5A78300C51E1B /* FASAlbumThumbnailView.m */,
-				44D0F0BB18C0CF5D00DEEE7D /* FASPhoto.h */,
-				44D0F0BC18C0CF5D00DEEE7D /* FASPhoto.m */,
-				44AAED5F18C4E10F0080E131 /* FASFacebookConnection.h */,
-				44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */,
-				44EB46D818C634BD00C57AF2 /* FASPhotoCell.h */,
-				44EB46D918C634BD00C57AF2 /* FASPhotoCell.m */,
-				4417DEC518DB3FC900076FD2 /* FASPhotoViewController.h */,
-				4417DEC618DB3FC900076FD2 /* FASPhotoViewController.m */,
 			);
 			path = FacebookAlbumSample;
 			sourceTree = "<group>";
@@ -192,6 +179,43 @@
 				447CB42818A5F29F00EC0012 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		449A071318EC54B1002698D5 /* DataClass */ = {
+			isa = PBXGroup;
+			children = (
+				449AB91C18B58A380093C495 /* FASAlbum.h */,
+				449AB91D18B58A380093C495 /* FASAlbum.m */,
+				44D0F0BB18C0CF5D00DEEE7D /* FASPhoto.h */,
+				44D0F0BC18C0CF5D00DEEE7D /* FASPhoto.m */,
+				44D0F0B818C0C8E200DEEE7D /* FASDataManager.h */,
+				44D0F0B918C0C8E200DEEE7D /* FASDataManager.m */,
+			);
+			name = DataClass;
+			sourceTree = "<group>";
+		};
+		449A071418EC54CD002698D5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				447CB41518A5F29F00EC0012 /* FASViewController.h */,
+				447CB41618A5F29F00EC0012 /* FASViewController.m */,
+				44D94F0718B5A78300C51E1B /* FASAlbumThumbnailView.h */,
+				44D94F0818B5A78300C51E1B /* FASAlbumThumbnailView.m */,
+				44EB46D818C634BD00C57AF2 /* FASPhotoCell.h */,
+				44EB46D918C634BD00C57AF2 /* FASPhotoCell.m */,
+				4417DEC518DB3FC900076FD2 /* FASPhotoViewController.h */,
+				4417DEC618DB3FC900076FD2 /* FASPhotoViewController.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		449A071518EC54E4002698D5 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				44AAED5F18C4E10F0080E131 /* FASFacebookConnection.h */,
+				44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */,
+			);
+			name = Communication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

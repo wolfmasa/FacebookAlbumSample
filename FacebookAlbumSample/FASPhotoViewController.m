@@ -23,10 +23,17 @@
     return self;
 }
 
+-(void)setUiImage
+{
+    FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
+    [fb getFullImage:self.photo];
+    [self.imageView setImage:self.photo.image];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.imageView.image = self.image;
+    [self setUiImage];
     // Do any additional setup after loading the view.
 }
 
@@ -47,4 +54,22 @@
 }
 */
 
+- (IBAction)pushPrev:(id)sender {
+    if(self.dataManager.activePhotoIndex >0)
+    {
+        [self.dataManager setActivePhotoIndex:self.dataManager.activePhotoIndex-1];
+        self.photo = [self.dataManager getActivePhoto];
+        [self setUiImage];
+    }
+}
+
+- (IBAction)pushNext:(id)sender {
+    FASAlbum* album = [self.dataManager getActiveAlbum];
+    if(self.dataManager.activePhotoIndex < [album.photos count]-1)
+    {
+        [self.dataManager setActivePhotoIndex:self.dataManager.activePhotoIndex+1];
+        self.photo = [self.dataManager getActivePhoto];
+        [self setUiImage];
+    }
+}
 @end

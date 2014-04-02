@@ -37,13 +37,13 @@
     {
         NSIndexPath *selectedIndexPath = [[self.thumbnailCollection indexPathsForSelectedItems] objectAtIndex:0];
 
-        FASAlbum *album = [self.dataManager getActiveAlbum];
-        FASPhoto *photo = album.photos[selectedIndexPath.row];
+        [self.dataManager changeActivePhotoIndex:selectedIndexPath.row];
+        FASPhoto *photo = [self.dataManager getActivePhoto];
         
         FASPhotoViewController *photoView = [segue destinationViewController];
-        [self.fb getFullImage:photo];
-        photoView.image = photo.image;
+        photoView.photo = photo;
         
+        photoView.dataManager = self.dataManager;
     }
 }
 

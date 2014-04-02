@@ -10,6 +10,16 @@
 
 @implementation FASFacebookConnection
 
+static FASFacebookConnection *sharedConnection_ = nil;
+
++ (FASFacebookConnection *)sharedConnection{
+    if (!sharedConnection_) {
+        sharedConnection_ = [FASFacebookConnection new];
+    }
+    return sharedConnection_;
+}
+
+
 -(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager
 {
     self.dataManager = manager;
@@ -249,6 +259,7 @@
    if(isFirst == YES)
    {
        FASAlbum *album = [self.dataManager getActiveAlbum];
+       if([album.photos count] > 0) return YES;
        self.nextPhotoListGraphPath = [NSString stringWithFormat:@"/%@/photos", album.albumId];
    }
    else if(self.nextPhotoListGraphPath == nil)

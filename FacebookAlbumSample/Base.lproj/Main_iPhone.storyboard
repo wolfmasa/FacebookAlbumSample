@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-Dt-hX4">
-                                <rect key="frame" x="87" y="62" width="147" height="30"/>
+                                <rect key="frame" x="87" y="115" width="147" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="アルバム一覧">
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -26,13 +26,13 @@
                                     <action selector="getAlbumList:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sgy-Vm-CGJ"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="sRt-Wj-Wkz">
-                                <rect key="frame" x="0.0" y="280" width="320" height="288"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="sRt-Wj-Wkz">
+                                <rect key="frame" x="0.0" y="147" width="320" height="421"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwV-IS-udP">
-                                <rect key="frame" x="260" y="62" width="32" height="30"/>
+                                <rect key="frame" x="242" y="115" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,23 +41,22 @@
                                     <action selector="pushNext:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mO3-Wv-pOS"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kdK-rG-zVf">
-                                <rect key="frame" x="40" y="100" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D47-3g-Bw6" customClass="FBLoginView">
-                                <rect key="frame" x="52" y="238" width="216" height="34"/>
+                                <rect key="frame" x="52" y="73" width="216" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sRt-Wj-Wkz" firstAttribute="top" secondItem="2ws-a9-gV9" secondAttribute="bottom" constant="83" id="RL6-A8-78N"/>
+                            <constraint firstItem="RxG-56-vLq" firstAttribute="top" secondItem="sRt-Wj-Wkz" secondAttribute="bottom" id="bUh-Vg-EMV"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cY6-pQ-Bpq"/>
                     <connections>
                         <outlet property="albumGetButton" destination="H0L-Dt-hX4" id="Y4R-kg-xIy"/>
                         <outlet property="albumListView" destination="sRt-Wj-Wkz" id="Uhx-g2-dat"/>
-                        <outlet property="pic" destination="kdK-rG-zVf" id="alS-dB-ApJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -76,7 +75,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kXQ-gx-N2L">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kXQ-gx-N2L">
                                 <rect key="frame" x="0.0" y="69" width="320" height="498"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cj1-Hu-kZv">
@@ -114,6 +113,10 @@
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kXQ-gx-N2L" firstAttribute="top" secondItem="HhK-qJ-2R6" secondAttribute="bottom" id="p21-0I-Xbl"/>
+                            <constraint firstItem="aEf-Ac-Dop" firstAttribute="top" secondItem="kXQ-gx-N2L" secondAttribute="bottom" id="tan-7C-fB9"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="progress" destination="oNa-GQ-G4j" id="cc7-nT-q2b"/>
@@ -136,25 +139,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SgA-DD-KS1">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="484"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SgA-DD-KS1">
+                                <rect key="frame" x="0.0" y="65" width="320" height="419"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11z-Hw-d2e">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11z-Hw-d2e">
                                 <rect key="frame" x="20" y="492" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Prev">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="pushPrev:" destination="iZf-E5-oiF" eventType="touchUpInside" id="J2Q-NW-P3X"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1u-Wc-VBv">
-                                <rect key="frame" x="267" y="492" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1u-Wc-VBv">
+                                <rect key="frame" x="254" y="492" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Next">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="pushNext:" destination="iZf-E5-oiF" eventType="touchUpInside" id="zOi-ma-gU8"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-fX-VxY">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-fX-VxY">
                                 <rect key="frame" x="137" y="492" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button">
@@ -163,6 +172,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SgA-DD-KS1" firstAttribute="top" secondItem="rx4-o0-BE1" secondAttribute="bottom" id="Lc1-Nr-Qmn"/>
+                            <constraint firstItem="pbX-fX-VxY" firstAttribute="top" secondItem="SgA-DD-KS1" secondAttribute="bottom" constant="8" id="Msl-q1-aHb"/>
+                            <constraint firstAttribute="width" secondItem="SgA-DD-KS1" secondAttribute="width" id="Rjt-La-1MO"/>
+                            <constraint firstItem="11z-Hw-d2e" firstAttribute="top" secondItem="SgA-DD-KS1" secondAttribute="bottom" constant="8" id="VK5-Zn-HLQ"/>
+                            <constraint firstItem="x1u-Wc-VBv" firstAttribute="top" secondItem="SgA-DD-KS1" secondAttribute="bottom" constant="8" id="cOI-bS-e9a"/>
+                            <constraint firstItem="E2s-SH-qTY" firstAttribute="top" secondItem="SgA-DD-KS1" secondAttribute="bottom" constant="84" id="k6d-Pk-CER"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aE1-fR-Ogi"/>
                     <connections>
