@@ -27,6 +27,7 @@
 {
     FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
     [fb getFullImage:self.photo];
+    NSLog(@"%fx%f", self.photo.image.size.width, self.photo.image.size.height);
     [self.imageView setImage:self.photo.image];
 }
 
@@ -53,6 +54,28 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)pushSave:(id)sender {
+    //画像保存完了時のセレクタ指定
+    SEL selector = @selector(onCompleteCapture:didFinishSavingWithError:contextInfo:);
+    //画像を保存する
+    UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, selector, NULL);
+}
+
+//画像保存完了時のセレクタ
+- (void)onCompleteCapture:(UIImage *)screenImage
+ didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    NSString *message = @"画像を保存しました";
+    if (error) message = @"画像の保存に失敗しました";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @""
+                                                    message: message
+                                                   delegate: nil
+                                          cancelButtonTitle: @"OK"
+                                          otherButtonTitles: nil];
+    [alert show];
+}
+
 
 - (IBAction)pushPrev:(id)sender {
     if(self.dataManager.activePhotoIndex >0)

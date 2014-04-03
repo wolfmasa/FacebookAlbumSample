@@ -17,6 +17,7 @@
 @property (weak, nonatomic) FASPhoto* photo;
 @property (weak, nonatomic) FASDataManager *dataManager;
 
+- (IBAction)pushSave:(id)sender;
 - (IBAction)pushPrev:(id)sender;
 - (IBAction)pushNext:(id)sender;
 @end
