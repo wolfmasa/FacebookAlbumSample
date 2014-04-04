@@ -101,10 +101,10 @@ static FASFacebookConnection *sharedConnection_ = nil;
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               NSLog(@"call");
                               if (!error){
-                                  if([result objectForKey:@"data"] == nil)
+                                  if(result[@"data"] == nil)
                                   {
                                       //最初のページはAlbumの中にある
-                                      result = [result objectForKey:@"albums"];
+                                      result = result[@"albums"];
                                   }
                                   else
                                   {
@@ -122,19 +122,19 @@ static FASFacebookConnection *sharedConnection_ = nil;
 -(void)parseAlbumFBGraphObject:(FBGraphObject*)albums
 {
     
-    NSMutableArray *data = [albums objectForKey:@"data"];
+    NSMutableArray *data = albums[@"data"];
     //現在のページに書いてあるアルバム名一覧を取得する
     for (NSInteger i=0; i<data.count; i++) {
         FBGraphObject *obj = [data objectAtIndex:i];
         FASAlbum *album = [[FASAlbum alloc]initWithFBObject:obj];
-        [album setName:[obj objectForKey:@"name"]];
-        [album setAlbumId:[obj objectForKey:@"id"]];
+        [album setName:obj[@"name"]];
+        [album setAlbumId:obj[@"id"]];
         
         [self.dataManager.albums addObject:album];
     }
     
-    FBGraphObject *nextpage =[albums objectForKey:@"paging"];
-    NSString *nextPageURL = [nextpage objectForKey:@"next"];
+    FBGraphObject *nextpage =albums[@"paging"];
+    NSString *nextPageURL = nextpage[@"next"];
     
     //次のページをセットする
     NSLog(@"%@", nextPageURL);
@@ -178,15 +178,14 @@ static FASFacebookConnection *sharedConnection_ = nil;
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               NSLog(@"call");
                               if (!error){
-                                  NSMutableArray *array = [result objectForKey:@"data"];
+                                  NSMutableArray *array = result[@"data"];
                                   NSLog(@"%@", array);
                                   for (FBGraphObject* obj in array)
                                   //FBGraphObject *obj = (FBGraphObject*)[array objectAtIndex:0];
                                   {
-                                      NSString *pictureUrl = [obj objectForKey:@"picture"];//source
-                                      NSString *graphId = [obj objectForKey:@"id"];
-                                      //NSMutableArray *images =[obj objectForKey:@"images"];
-                                      NSString *source = [obj objectForKey:@"source"];
+                                      NSString *pictureUrl = obj[@"picture"];//source
+                                      NSString *graphId = obj[@"id"];
+                                      NSString *source = obj[@"source"];
                                       
                                       NSLog(@"%@", pictureUrl);
                                       
@@ -220,10 +219,10 @@ static FASFacebookConnection *sharedConnection_ = nil;
     [FBRequestConnection startWithGraphPath:self.nextAlbumListGraphPath
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               if (!error){
-                                  if([result objectForKey:@"data"] == nil)
+                                  if(result[@"data"] == nil)
                                   {
                                       //最初のページはAlbumの中にある
-                                      result = [result objectForKey:@"albums"];
+                                      result = result[@"albums"];
                                   }
                                   [self parseAlbumFBGraphObject:result];
                                   ret = YES;
@@ -277,16 +276,16 @@ static FASFacebookConnection *sharedConnection_ = nil;
                                   NSNumber* progressVal = @0;
                                   [self performSelectorInBackground:@selector(updateProgress:) withObject:progressVal];
                                   FASAlbum* album = [self.dataManager getActiveAlbum];
-                                  NSMutableArray *array = [result objectForKey:@"data"];
+                                  NSMutableArray *array = result[@"data"];
                                   int i=0;
                                   for (FBGraphObject* obj in array)
                                   {
                                       i++;
                                       progressVal = [NSNumber numberWithFloat:((float)i*100/[array count])];
                                       [self performSelectorInBackground:@selector(updateProgress:) withObject:progressVal];
-                                      NSString *pictureUrl = [obj objectForKey:@"picture"];//source
-                                      NSString *graphId = [obj objectForKey:@"id"];
-                                      NSString *source = [obj objectForKey:@"source"];
+                                      NSString *pictureUrl = obj[@"picture"];//source
+                                      NSString *graphId = obj[@"id"];
+                                      NSString *source = obj[@"source"];
                                       
                                       
                                       FASPhoto *photo = [FASPhoto new];
@@ -300,8 +299,8 @@ static FASFacebookConnection *sharedConnection_ = nil;
                                       
                                   }
                                   
-                                  FBGraphObject *paging = [result objectForKey:@"paging"];
-                                  self.nextPhotoListGraphPath = [self parseUrlToGraphPath:[paging objectForKey:@"next"]];
+                                  FBGraphObject *paging = result[@"paging"];
+                                  self.nextPhotoListGraphPath = [self parseUrlToGraphPath:paging[@"next"]];
                                   
                                   ret = YES;
                               }
