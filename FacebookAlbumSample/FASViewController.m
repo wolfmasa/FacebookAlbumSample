@@ -39,7 +39,32 @@
 -(BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [FBLoginView class];
+    
+    self.loginView.delegate =self;
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
+    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    
+    // You can add your app-specific url handling code here if needed
+    
+    return wasHandled;
+}
+
+-(void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
+{
+    NSLog(@"%@", error);
+}
+
+-(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
+{
+    NSLog(@"%@", user);
 }
 
 - (IBAction)getAlbumList:(id)sender {
@@ -68,7 +93,7 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%d <=> %d", indexPath.row, [self.dataManager.albums count]);
+    NSLog(@"%lu <=> %lu", indexPath.row, (unsigned long)[self.dataManager.albums count]);
     if(indexPath.row+1 >= [self.dataManager.albums count])
     {
         if([[FASFacebookConnection sharedConnection] getNextAlbumPage])

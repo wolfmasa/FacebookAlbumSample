@@ -41,21 +41,15 @@
                     <navigationItem key="navigationItem" id="cY6-pQ-Bpq">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="D47-3g-Bw6" customClass="FBLoginView">
-                            <rect key="frame" x="84" y="5" width="152" height="34"/>
+                            <rect key="frame" x="52" y="5" width="216" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1U-yX-5IT" customClass="FBLoginView">
-                                    <rect key="frame" x="7" y="2" width="138" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                </view>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                     </navigationItem>
                     <connections>
                         <outlet property="albumGetButton" destination="H0L-Dt-hX4" id="Y4R-kg-xIy"/>
                         <outlet property="albumListView" destination="sRt-Wj-Wkz" id="Uhx-g2-dat"/>
+                        <outlet property="loginView" destination="D47-3g-Bw6" id="THV-K2-WqB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -110,6 +104,13 @@
                                 <rect key="frame" x="0.0" y="66" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWH-Y0-SMl">
+                                <rect key="frame" x="137" y="20" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>

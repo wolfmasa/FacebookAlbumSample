@@ -13,11 +13,12 @@
 #import "FASAlbum.h"
 #import "FASFacebookConnection.h"
 
-@interface FASViewController : UIViewController<UITableViewDelegate>
+@interface FASViewController : UIViewController<UITableViewDelegate, FBLoginViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *albumGetButton;
 - (IBAction)getAlbumList:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *albumListView;
 
 @property(retain, nonatomic) FASDataManager *dataManager;
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 
 @end
