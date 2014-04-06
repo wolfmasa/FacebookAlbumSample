@@ -8,6 +8,7 @@
 
 #import "FASAlbumThumbnailView.h"
 #import "FASPhotoViewController.h"
+#import "FASFileManager.h"
 
 @implementation FASAlbumThumbnailView
 
@@ -18,9 +19,31 @@
     self.thumbnailCollection.dataSource = self.dataManager;
     [self.thumbnailCollection reloadData];
     
+    [self updateCacheStatus];
     self.progress.progress = 0;
 }
 
+-(void)updateCacheStatus
+{
+    FASAlbum* album = [self.dataManager getActiveAlbum];
+    if([album updateCacheStatus] == YES)
+    {
+        NSString *title;
+        switch (album.cacheStatus) {
+            case FASAlbumCacheStatusLoading:
+                title =@"Loading...";
+                break;
+            case FASAlbumCacheStatusNotCached:
+                title =@"Download Now";
+                break;
+            case FASAlbumCacheStatusCached:
+                title =@"Cached";
+                break;
+        }
+        
+        [self.saveButton setTitle:title forState:UIControlStateNormal];
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -47,4 +70,8 @@
     }
 }
 
+- (IBAction)saveAlbum:(id)sender {
+    if([self.dataManager saveAlbum]==YES)
+       [self updateCacheStatus];
+}
 @end

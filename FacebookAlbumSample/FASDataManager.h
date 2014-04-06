@@ -23,6 +23,6 @@
 -(BOOL)changeActivePhotoIndex:(NSInteger)index;
 -(FASPhoto*)getActivePhoto;
 
--(BOOL)saveAlbumPhoto;
+-(BOOL)saveAlbum;
 
 @end

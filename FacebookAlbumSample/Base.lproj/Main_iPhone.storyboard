@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kXQ-gx-N2L">
-                                <rect key="frame" x="0.0" y="69" width="320" height="498"/>
+                                <rect key="frame" x="0.0" y="103" width="320" height="464"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cj1-Hu-kZv">
                                     <size key="itemSize" width="80" height="80"/>
@@ -101,26 +101,31 @@
                                 </cells>
                             </collectionView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oNa-GQ-G4j">
-                                <rect key="frame" x="0.0" y="66" width="320" height="2"/>
+                                <rect key="frame" x="0.0" y="103" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWH-Y0-SMl">
-                                <rect key="frame" x="137" y="20" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWH-Y0-SMl">
+                                <rect key="frame" x="82" y="65" width="157" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="保存">
+                                <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveAlbum:" destination="rbt-ju-jdO" eventType="touchUpInside" id="ax4-GL-h4T"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oNa-GQ-G4j" firstAttribute="top" secondItem="HhK-qJ-2R6" secondAttribute="bottom" id="EGJ-gC-kdY"/>
-                            <constraint firstItem="kXQ-gx-N2L" firstAttribute="top" secondItem="HhK-qJ-2R6" secondAttribute="bottom" id="p21-0I-Xbl"/>
+                            <constraint firstItem="oNa-GQ-G4j" firstAttribute="top" secondItem="HhK-qJ-2R6" secondAttribute="bottom" constant="30" id="EGJ-gC-kdY"/>
+                            <constraint firstItem="kXQ-gx-N2L" firstAttribute="top" secondItem="tWH-Y0-SMl" secondAttribute="bottom" id="OMR-WQ-2MX"/>
+                            <constraint firstItem="kXQ-gx-N2L" firstAttribute="top" secondItem="HhK-qJ-2R6" secondAttribute="bottom" constant="30" id="p21-0I-Xbl"/>
                             <constraint firstItem="aEf-Ac-Dop" firstAttribute="top" secondItem="kXQ-gx-N2L" secondAttribute="bottom" id="tan-7C-fB9"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="progress" destination="oNa-GQ-G4j" id="cc7-nT-q2b"/>
+                        <outlet property="saveButton" destination="tWH-Y0-SMl" id="7yc-WX-S12"/>
                         <outlet property="thumbnailCollection" destination="kXQ-gx-N2L" id="aLk-AU-hkk"/>
                     </connections>
                 </viewController>

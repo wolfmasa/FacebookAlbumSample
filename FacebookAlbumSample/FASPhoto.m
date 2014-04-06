@@ -7,7 +7,22 @@
 //
 
 #import "FASPhoto.h"
+#import "FASFileManager.h"
 
 @implementation FASPhoto
+
+-(BOOL)isCached
+{
+    BOOL ret = YES;
+    if(self.image == nil)
+    {
+        FASFileManager *fileManager = [FASFileManager sharedManager];
+        self.image = [fileManager getPhotoWithPath:self.graphId];
+        if(self.image==nil)
+            ret = NO;;
+    }
+    
+    return ret;
+}
 
 @end

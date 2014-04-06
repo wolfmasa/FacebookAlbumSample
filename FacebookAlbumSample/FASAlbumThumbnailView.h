@@ -17,4 +17,10 @@
 
 @property (retain)FASDataManager *dataManager;
 
+-(void)updateCacheStatus;
+
+//SaveButton
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+- (IBAction)saveAlbum:(id)sender;
+
 @end

@@ -11,11 +11,21 @@
 @interface FASFileManager : NSObject
 
 //シングルトン
-+(FASFileManager*)sharedConnection;
++(FASFileManager*)sharedManager;
 
 @property(nonatomic, strong)NSString* userId;
+@property(nonatomic, strong)NSString* albumId;
 
 -(BOOL)initWithUserId:(NSString*)userId;
--(BOOL)createAlbumDir:(NSString*)albumId;
+-(BOOL)setAlbum:(NSString*)albumId;
 
+//save
+-(BOOL)savePhoto:(NSString*)photoId image:(UIImage*)image;
+
+//read
+-(UIImage*)getPhotoWithPath:(NSString*)photoId;
+
+//delete
+-(void)deleteAlbum:(NSString*)albumId;
+-(void)deletePhoto:(NSString*)photoId;
 @end

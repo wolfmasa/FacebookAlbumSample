@@ -11,11 +11,17 @@
 @implementation FASFileManager
 static FASFileManager *sharedManager_ = nil;
 
-+ (FASFileManager *)sharedConnection{
++ (FASFileManager *)sharedManager{
     if (!sharedManager_) {
         sharedManager_ = [FASFileManager new];
     }
     return sharedManager_;
+}
+
+-(NSString*)getDocumentDir
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [paths objectAtIndex:0];
 }
 
 -(BOOL)createDir:(NSString*)path
@@ -38,15 +44,61 @@ static FASFileManager *sharedManager_ = nil;
     return [self createDir:userId];
 }
 
--(BOOL)createAlbumDir:(NSString*)albumId
+-(BOOL)setAlbum:(NSString*)albumId
 {
     if (albumId==nil || self.userId==nil) return NO;
     
-    NSString* dirPath = [NSString stringWithFormat:@"%@/%@", self.userId, albumId];
+    self.albumId = albumId;
+    
+    NSString* dirPath = [NSString stringWithFormat:@"%@/%@/%@", [self getDocumentDir],self.userId, self.albumId];
     
     return [self createDir:dirPath];
 }
 
+-(BOOL)savePhoto:(NSString*)photoId image:(UIImage*)image
+{
+    if(self.albumId==nil || self.userId==nil || photoId==nil||image==nil) return NO;
+    
+    NSString* filePath = [NSString stringWithFormat:@"%@/%@/%@/%@.jpg", [self getDocumentDir],self.userId, self.albumId, photoId];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:filePath] != YES)
+    {
+        NSData *data = UIImageJPEGRepresentation(image, 0.8f);
+        NSLog(@"Save File:%@", filePath);
+        return [data writeToFile:filePath atomically:YES];
+    }
+    else
+        return YES;
+}
+
+-(UIImage*)getPhotoWithPath:(NSString*)photoId
+{
+    NSString* filePath = [NSString stringWithFormat:@"%@/%@/%@/%@.jpg", [self getDocumentDir],self.userId, self.albumId, photoId];
+    
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:filePath]==YES)
+        return [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+    else
+        return nil;
+}
+
+-(void)deleteFile:(NSString*)path
+{
+    NSFileManager *fileManager= [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:path error:nil];
+}
+
+-(void)deleteAlbum:(NSString*)albumId
+{
+    [self deleteFile:[NSString stringWithFormat:@"%@/%@/%@", [self getDocumentDir],self.userId, albumId]];
+}
+
+-(void)deletePhoto:(NSString*)photoId
+{
+    [self deleteFile:[NSString stringWithFormat:@"%@/%@/%@/%@.jpg"
+                      , [self getDocumentDir],self.userId, self.albumId, photoId]];
+}
 
 /*
  NSFileManager *fm = [NSFileManager defaultManager];

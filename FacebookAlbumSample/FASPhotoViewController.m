@@ -7,6 +7,7 @@
 //
 
 #import "FASPhotoViewController.h"
+#import "FASFileManager.h"
 
 @interface FASPhotoViewController ()
 
@@ -25,10 +26,17 @@
 
 -(void)setUiImage
 {
-    FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-    [fb getFullImage:self.photo];
+    if(self.photo.image == nil)
+    {
+        FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
+        [fb getFullImage:self.photo];
+    }
     NSLog(@"%fx%f", self.photo.image.size.width, self.photo.image.size.height);
     [self.imageView setImage:self.photo.image];
+   
+    FASFileManager* fileManager = [FASFileManager sharedManager];
+    
+    [fileManager savePhoto:self.photo.graphId image:self.photo.image];
 }
 
 - (void)viewDidLoad

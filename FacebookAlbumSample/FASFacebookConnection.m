@@ -121,7 +121,6 @@ static FASFacebookConnection *sharedConnection_ = nil;
 
 -(void)parseAlbumFBGraphObject:(FBGraphObject*)albums
 {
-    
     NSMutableArray *data = albums[@"data"];
     //現在のページに書いてあるアルバム名一覧を取得する
     for (NSInteger i=0; i<data.count; i++) {
@@ -243,12 +242,20 @@ static FASFacebookConnection *sharedConnection_ = nil;
     [self getNextPhotoList:NO];
 }
 
--(void)updateProgress:(NSNumber*)value100
+-(void)_updateProgress:(NSNumber*)value100
 {
     float progressValue =(float)[value100 intValue]/100;
     NSLog(@"progress:%f", progressValue);
-    if(progressValue == 1.0) progressValue = 0;
+    if(progressValue == 1.0)
+    {
+        progressValue = 0;
+    }
     [self.reloadCollectionTarget.progress setProgress:progressValue];
+}
+
+-(void)updateProgress:(NSNumber*)value100
+{
+    [self performSelectorInBackground:@selector(_updateProgress:) withObject:value100];
 }
 
 -(BOOL)getNextPhotoList:(BOOL)isFirst
@@ -274,20 +281,18 @@ static FASFacebookConnection *sharedConnection_ = nil;
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               if (!error){
                                   NSNumber* progressVal = @0;
-                                  [self performSelectorInBackground:@selector(updateProgress:) withObject:progressVal];
+                                  [self updateProgress:progressVal];
                                   FASAlbum* album = [self.dataManager getActiveAlbum];
                                   NSMutableArray *array = result[@"data"];
                                   int i=0;
                                   for (FBGraphObject* obj in array)
                                   {
                                       i++;
-                                      progressVal = [NSNumber numberWithFloat:((float)i*100/[array count])];
-                                      [self performSelectorInBackground:@selector(updateProgress:) withObject:progressVal];
+                                      
                                       NSString *pictureUrl = obj[@"picture"];//source
                                       NSString *graphId = obj[@"id"];
                                       NSString *source = obj[@"source"];
-                                      
-                                      
+
                                       FASPhoto *photo = [FASPhoto new];
                                       
                                       //TODO リストを取得するタイミングでは画像はいらない？
@@ -297,7 +302,11 @@ static FASFacebookConnection *sharedConnection_ = nil;
                                       photo.thumbnail =[self getPhoto:photo.thumbnailUrl];
                                       [album.photos addObject:photo];
                                       
+                                      progressVal = [NSNumber numberWithFloat:((float)i*100/[array count])];
+                                      [self updateProgress:progressVal];
                                   }
+                                  
+                                  [self.reloadCollectionTarget updateCacheStatus];
                                   
                                   FBGraphObject *paging = result[@"paging"];
                                   self.nextPhotoListGraphPath = [self parseUrlToGraphPath:paging[@"next"]];

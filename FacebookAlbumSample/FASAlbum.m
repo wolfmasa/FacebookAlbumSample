@@ -7,6 +7,7 @@
 //
 
 #import "FASAlbum.h"
+#import "FASFileManager.h"
 
 @implementation FASAlbum
 
@@ -21,5 +22,37 @@
     return self;
 }
 
+-(BOOL)updateCacheStatus
+{
+    FASAlbumCacheStatus status;
+    if([self.photos count]== 0)
+    {
+        status = FASAlbumCacheStatusLoading;
+    }
+    else
+    {
+        BOOL flag = YES;
+        FASFileManager *fileManager = [FASFileManager sharedManager];
+        [fileManager setAlbum:self.albumId];
+        
+        for (FASPhoto* photo in self.photos) {
+            if ([photo isCached]!= YES)
+                flag = NO;
+        }
+        
+        if(flag == YES)
+            status = FASAlbumCacheStatusCached;
+        else
+            status = FASAlbumCacheStatusNotCached;
+    }
+    if (status == self.cacheStatus) {
+        return NO;
+    }
+    else
+    {
+        self.cacheStatus = status;
+        return YES;
+    }
+}
 
 @end

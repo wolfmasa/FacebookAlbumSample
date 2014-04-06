@@ -33,4 +33,6 @@
 -(BOOL)getThumbnailImage:(FASPhoto*)photo;
 -(BOOL)getFullImage:(FASPhoto*)photo;
 
+-(void)updateProgress:(NSNumber*)value100;
+
 @end

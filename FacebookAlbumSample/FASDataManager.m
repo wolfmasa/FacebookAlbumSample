@@ -8,7 +8,7 @@
 
 #import "FASDataManager.h"
 #import "FASFacebookConnection.h"
-
+#import "FASFileManager.h"
 
 @implementation FASDataManager
 
@@ -19,6 +19,11 @@
         self.albums = [NSMutableArray new];
         self.activeAlbumIndex = 0;
     }
+    
+    // Init FileManager
+    FASFileManager * fileManager = [FASFileManager sharedManager];
+    [fileManager initWithUserId:@"me"];
+    
     return self;
 }
 
@@ -50,12 +55,28 @@
 
 -(FASAlbum*)getActiveAlbum
 {
-    return [self.albums objectAtIndex:self.activeAlbumIndex];
+    FASAlbum *album = [self.albums objectAtIndex:self.activeAlbumIndex];
+    FASFileManager *fileManager = [FASFileManager sharedManager];
+    [fileManager setAlbum:album.albumId];
+
+    return album;
 }
 
--(BOOL)saveAlbumPhoto
+-(BOOL)saveAlbum
 {
+    FASFileManager *fileManager = [FASFileManager sharedManager];
     FASAlbum* album = [self getActiveAlbum];
+    int i = 0;
+    for (FASPhoto* photo in album.photos) {
+        i++;
+        if(photo.image == nil)
+        {
+            FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
+            [fb getFullImage:photo];
+            [fb updateProgress:[NSNumber numberWithFloat:((float)i*100/[album.photos count])]];
+        }
+        [fileManager savePhoto:photo.graphId image:photo.image];
+    }
     
     return YES;
 }
