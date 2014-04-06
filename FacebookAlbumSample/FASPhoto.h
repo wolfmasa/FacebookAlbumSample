@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FASPhoto : NSObject
+@interface FASPhoto : NSObject<NSCoding>
 
 @property(nonatomic,strong)UIImage *thumbnail;
 @property(nonatomic, strong)NSString *thumbnailUrl;

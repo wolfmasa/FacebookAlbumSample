@@ -125,7 +125,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
     //現在のページに書いてあるアルバム名一覧を取得する
     for (NSInteger i=0; i<data.count; i++) {
         FBGraphObject *obj = [data objectAtIndex:i];
-        FASAlbum *album = [[FASAlbum alloc]initWithFBObject:obj];
+        FASAlbum *album = [FASAlbum new];
         [album setName:obj[@"name"]];
         [album setAlbumId:obj[@"id"]];
         

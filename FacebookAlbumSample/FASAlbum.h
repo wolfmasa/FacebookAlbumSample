@@ -17,8 +17,7 @@ typedef NS_ENUM(NSUInteger, FASAlbumCacheStatus) {
     FASAlbumCacheStatusLoading
 };
 
-@interface FASAlbum : NSObject
-@property(nonatomic, retain) FBGraphObject *fbObject;
+@interface FASAlbum : NSObject<NSCoding>
 @property(nonatomic) NSString* name;
 @property(nonatomic) NSString* albumId;
 
@@ -26,7 +25,7 @@ typedef NS_ENUM(NSUInteger, FASAlbumCacheStatus) {
 
 @property(nonatomic)NSMutableArray *photos;
 
-- (id)initWithFBObject:(FBGraphObject*)fb;
+- (id)init;
 -(BOOL)updateCacheStatus;
 
 @end

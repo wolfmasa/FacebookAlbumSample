@@ -25,4 +25,28 @@
     return ret;
 }
 
+#pragma mark NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        self.graphId = [decoder decodeObjectForKey:@"graphId"];
+        self.image = [decoder decodeObjectForKey:@"image"];
+        self.imageUrl = [decoder decodeObjectForKey:@"imageUrl"];
+        self.thumbnail = [decoder decodeObjectForKey:@"thumbnail"];
+        self.thumbnailUrl = [decoder decodeObjectForKey:@"thumbnailUrl"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.graphId forKey:@"graphId"];
+    [encoder encodeObject:self.image forKey:@"image"];
+    [encoder encodeObject:self.imageUrl forKey:@"imageUrl"];
+    [encoder encodeObject:self.thumbnail forKey:@"thumbnail"];
+    [encoder encodeObject:self.thumbnailUrl forKey:@"thumbnailUrl"];
+}
+
 @end

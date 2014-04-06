@@ -11,12 +11,9 @@
 
 @implementation FASAlbum
 
-- (id)initWithFBObject:(FBGraphObject*)fb
+- (id)init
 {
     self = [super init];
-    if (self) {
-        self.fbObject = fb;
-    }
     
     self.photos = [NSMutableArray new];
     return self;
@@ -53,6 +50,26 @@
         self.cacheStatus = status;
         return YES;
     }
+}
+
+#pragma mark NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        self.name = [decoder decodeObjectForKey:@"name"];
+        self.albumId = [decoder decodeObjectForKey:@"albumId"];
+        self.photos = [decoder decodeObjectForKey:@"photos"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeObject:self.albumId forKey:@"albumId"];
+    [encoder encodeObject:self.photos forKey:@"photos"];
 }
 
 @end
