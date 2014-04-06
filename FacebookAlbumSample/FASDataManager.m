@@ -53,6 +53,13 @@
     return [self.albums objectAtIndex:self.activeAlbumIndex];
 }
 
+-(BOOL)saveAlbumPhoto
+{
+    FASAlbum* album = [self getActiveAlbum];
+    
+    return YES;
+}
+
 #pragma mark UICollectionView
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

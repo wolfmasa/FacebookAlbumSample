@@ -13,6 +13,7 @@
 
 @interface FASFacebookConnection : NSObject
 
+//シングルトン
 +(FASFacebookConnection*)sharedConnection;
 
 @property(weak, nonatomic)FASDataManager* dataManager;

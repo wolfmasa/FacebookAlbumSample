@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4417DEC418D8976200076FD2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4417DEC318D8976100076FD2 /* FacebookSDK.framework */; };
 		4417DEC718DB3FC900076FD2 /* FASPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4417DEC618DB3FC900076FD2 /* FASPhotoViewController.m */; };
+		4476DC8018F0EACB0090BD44 /* FASFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4476DC7F18F0EACB0090BD44 /* FASFileManager.m */; };
 		447CB3FE18A5F29F00EC0012 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB3FD18A5F29F00EC0012 /* Foundation.framework */; };
 		447CB40018A5F29F00EC0012 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB3FF18A5F29F00EC0012 /* CoreGraphics.framework */; };
 		447CB40218A5F29F00EC0012 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB40118A5F29F00EC0012 /* UIKit.framework */; };
@@ -46,6 +47,8 @@
 		4417DEC318D8976100076FD2 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		4417DEC518DB3FC900076FD2 /* FASPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASPhotoViewController.h; sourceTree = "<group>"; };
 		4417DEC618DB3FC900076FD2 /* FASPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASPhotoViewController.m; sourceTree = "<group>"; };
+		4476DC7E18F0EACB0090BD44 /* FASFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASFileManager.h; sourceTree = "<group>"; };
+		4476DC7F18F0EACB0090BD44 /* FASFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASFileManager.m; sourceTree = "<group>"; };
 		447CB3FA18A5F29F00EC0012 /* FacebookAlbumSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookAlbumSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447CB3FD18A5F29F00EC0012 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		447CB3FF18A5F29F00EC0012 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				447CB41218A5F29F00EC0012 /* Main_iPad.storyboard */,
 				447CB41818A5F29F00EC0012 /* Images.xcassets */,
 				447CB40418A5F29F00EC0012 /* Supporting Files */,
+				4476DC7E18F0EACB0090BD44 /* FASFileManager.h */,
+				4476DC7F18F0EACB0090BD44 /* FASFileManager.m */,
 			);
 			path = FacebookAlbumSample;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 				447CB40E18A5F29F00EC0012 /* FASAppDelegate.m in Sources */,
 				44AAED6118C4E10F0080E131 /* FASFacebookConnection.m in Sources */,
 				44D0F0BD18C0CF5D00DEEE7D /* FASPhoto.m in Sources */,
+				4476DC8018F0EACB0090BD44 /* FASFileManager.m in Sources */,
 				4417DEC718DB3FC900076FD2 /* FASPhotoViewController.m in Sources */,
 				44EB46DA18C634BD00C57AF2 /* FASPhotoCell.m in Sources */,
 			);
