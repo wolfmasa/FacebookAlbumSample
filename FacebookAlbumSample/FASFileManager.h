@@ -28,4 +28,9 @@
 //delete
 -(void)deleteAlbum:(NSString*)albumId;
 -(void)deletePhoto:(NSString*)photoId;
+
+// archive
+-(BOOL)archivePhotoData:(NSMutableArray*)albums;
+-(NSMutableArray*)unarchivePhotoData;
+
 @end

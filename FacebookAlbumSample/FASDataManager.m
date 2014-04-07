@@ -14,15 +14,17 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        self.albums = [NSMutableArray new];
-        self.activeAlbumIndex = 0;
-    }
-    
     // Init FileManager
     FASFileManager * fileManager = [FASFileManager sharedManager];
     [fileManager initWithUserId:@"me"];
+    
+    self = [super init];
+    if (self) {
+        self.activeAlbumIndex = 0;
+        
+        self.albums = [fileManager unarchivePhotoData];
+        if(self.albums == nil) self.albums = [NSMutableArray new];            
+    }
     
     return self;
 }
@@ -77,6 +79,8 @@
         }
         [fileManager savePhoto:photo.graphId image:photo.image];
     }
+    
+    [fileManager archivePhotoData:self.albums];
     
     return YES;
 }

@@ -100,6 +100,36 @@ static FASFileManager *sharedManager_ = nil;
                       , [self getDocumentDir],self.userId, self.albumId, photoId]];
 }
 
+-(BOOL)archivePhotoData:(NSMutableArray*)albums
+{
+    NSString *filePath = [[self getDocumentDir] stringByAppendingPathComponent:@"data.dat"];
+    
+    BOOL successful = [NSKeyedArchiver archiveRootObject:albums toFile:filePath];
+    if (successful) {
+        NSLog(@"%@", @"データの保存に成功しました。");
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(NSMutableArray*)unarchivePhotoData
+{
+    NSString *filePath = [[self getDocumentDir] stringByAppendingPathComponent:@"data.dat"];
+    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    if (array)
+    {
+        for (NSString *data in array)
+        {
+            NSLog(@"%@", data);
+        }
+    } else {
+        NSLog(@"%@", @"データが存在しません。");
+    }
+    
+    return array;
+}
+
 /*
  NSFileManager *fm = [NSFileManager defaultManager];
  NSError *error;

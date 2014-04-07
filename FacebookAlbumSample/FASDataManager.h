@@ -12,13 +12,15 @@
 
 @interface FASDataManager : NSObject<UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource>
 
-@property(retain,nonatomic)NSMutableArray* albums;
+@property(strong,nonatomic)NSMutableArray* albums;
 @property NSString* nextPageGraphPath;
 
+// Album
 @property NSInteger activeAlbumIndex;
 -(BOOL)changeActiveAlbumIndex:(NSInteger)index;
 -(FASAlbum*)getActiveAlbum;
 
+// Photo
 @property NSInteger activePhotoIndex;
 -(BOOL)changeActivePhotoIndex:(NSInteger)index;
 -(FASPhoto*)getActivePhoto;
