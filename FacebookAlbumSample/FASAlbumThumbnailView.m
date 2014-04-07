@@ -9,14 +9,17 @@
 #import "FASAlbumThumbnailView.h"
 #import "FASPhotoViewController.h"
 #import "FASFileManager.h"
+#import "FASAlbum.h"
+#import "FASDataManager.h"
 
 @implementation FASAlbumThumbnailView
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.thumbnailCollection.delegate = self.dataManager;
-    self.thumbnailCollection.dataSource = self.dataManager;
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    self.thumbnailCollection.delegate = dataManager;
+    self.thumbnailCollection.dataSource = dataManager;
     [self.thumbnailCollection reloadData];
     
     [self updateCacheStatus];
@@ -25,7 +28,8 @@
 
 -(void)updateCacheStatus
 {
-    FASAlbum* album = [self.dataManager getActiveAlbum];
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    FASAlbum* album = [dataManager getActiveAlbum];
     if([album updateCacheStatus] == YES)
     {
         NSString *title;
@@ -60,18 +64,17 @@
     {
         NSIndexPath *selectedIndexPath = [[self.thumbnailCollection indexPathsForSelectedItems] objectAtIndex:0];
 
-        [self.dataManager changeActivePhotoIndex:selectedIndexPath.row];
-        FASPhoto *photo = [self.dataManager getActivePhoto];
+        FASDataManager *dataManager = [FASDataManager sharedManager];
+        [dataManager changeActivePhotoIndex:selectedIndexPath.row];
         
         FASPhotoViewController *photoView = [segue destinationViewController];
-        photoView.photo = photo;
-        
-        photoView.dataManager = self.dataManager;
+        photoView.photo = [dataManager getActivePhoto];
     }
 }
 
 - (IBAction)saveAlbum:(id)sender {
-    if([self.dataManager saveAlbum]==YES)
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    if([dataManager saveAlbum]==YES)
        [self updateCacheStatus];
 }
 @end

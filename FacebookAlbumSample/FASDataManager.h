@@ -12,6 +12,8 @@
 
 @interface FASDataManager : NSObject<UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource>
 
++(FASDataManager*)sharedManager;
+
 @property(strong,nonatomic)NSMutableArray* albums;
 @property NSString* nextPageGraphPath;
 

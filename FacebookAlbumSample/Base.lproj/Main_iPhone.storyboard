@@ -166,7 +166,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="pushNext:" destination="iZf-E5-oiF" eventType="touchUpInside" id="zOi-ma-gU8"/>
+                                    <action selector="pushNext:" destination="iZf-E5-oiF" eventType="touchUpInside" id="fOz-gO-YBb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-fX-VxY">
@@ -193,6 +193,9 @@
                     <navigationItem key="navigationItem" id="aE1-fR-Ogi"/>
                     <connections>
                         <outlet property="imageView" destination="SgA-DD-KS1" id="ICa-5r-JYG"/>
+                        <outlet property="nextButton" destination="x1u-Wc-VBv" id="Udb-Wu-mt6"/>
+                        <outlet property="prevButton" destination="11z-Hw-d2e" id="hcR-nd-2HY"/>
+                        <outlet property="saveButton" destination="pbX-fX-VxY" id="Pox-jb-NsX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xO-QW-pTa" userLabel="First Responder" sceneMemberID="firstResponder"/>

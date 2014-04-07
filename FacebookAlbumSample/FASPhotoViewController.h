@@ -15,7 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (weak, nonatomic) FASPhoto* photo;
-@property (weak, nonatomic) FASDataManager *dataManager;
+@property (weak, nonatomic) IBOutlet UIButton *prevButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
 - (IBAction)pushSave:(id)sender;
 - (IBAction)pushPrev:(id)sender;

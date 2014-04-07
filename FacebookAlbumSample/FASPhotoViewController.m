@@ -37,6 +37,7 @@
     FASFileManager* fileManager = [FASFileManager sharedManager];
     
     [fileManager savePhoto:self.photo.graphId image:self.photo.image];
+    [self updateButtonStatus];
 }
 
 - (void)viewDidLoad
@@ -84,22 +85,30 @@
     [alert show];
 }
 
+-(void)updateButtonStatus
+{
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    [self.prevButton setEnabled:(dataManager.activePhotoIndex>0)];
+    [self.nextButton setEnabled:(dataManager.activePhotoIndex < [[dataManager getActiveAlbum].photos count]-1)];
+}
 
 - (IBAction)pushPrev:(id)sender {
-    if(self.dataManager.activePhotoIndex >0)
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    if(dataManager.activePhotoIndex >0)
     {
-        [self.dataManager setActivePhotoIndex:self.dataManager.activePhotoIndex-1];
-        self.photo = [self.dataManager getActivePhoto];
+        [dataManager setActivePhotoIndex:dataManager.activePhotoIndex-1];
+        self.photo = [dataManager getActivePhoto];
         [self setUiImage];
     }
 }
 
 - (IBAction)pushNext:(id)sender {
-    FASAlbum* album = [self.dataManager getActiveAlbum];
-    if(self.dataManager.activePhotoIndex < [album.photos count]-1)
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    FASAlbum* album = [dataManager getActiveAlbum];
+    if(dataManager.activePhotoIndex < [album.photos count]-1)
     {
-        [self.dataManager setActivePhotoIndex:self.dataManager.activePhotoIndex+1];
-        self.photo = [self.dataManager getActivePhoto];
+        [dataManager setActivePhotoIndex:dataManager.activePhotoIndex+1];
+        self.photo = [dataManager getActivePhoto];
         [self setUiImage];
     }
 }

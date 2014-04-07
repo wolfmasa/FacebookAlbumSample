@@ -7,6 +7,9 @@
 //
 
 #import "FASViewController.h"
+#import "FASDataManager.h"
+#import "FASAlbum.h"
+#import "FASFacebookConnection.h"
 
 @interface FASViewController ()
 
@@ -19,14 +22,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.dataManager = [FASDataManager new];
+    FASDataManager *dataManager = [FASDataManager sharedManager];
     
     FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-    fb = [fb initWithDataManager:self.dataManager];
+    fb = [fb initWithDataManager:dataManager];
     [fb setReloadTableTarget:self.albumListView];
     
     [self.albumListView setDelegate:self];
-    [self.albumListView setDataSource:self.dataManager];
+    [self.albumListView setDataSource:dataManager];
     
 }
 
@@ -83,18 +86,19 @@
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
     [fb setReloadCollectionTarget:thumbView];
     
-    [self.dataManager setActiveAlbumIndex:indexPath.row];
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    [dataManager setActiveAlbumIndex:indexPath.row];
     [fb getNextPhotoList:YES];
-    
-    thumbView.dataManager = self.dataManager;
     
     [self.navigationController pushViewController:thumbView animated:YES];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%lu <=> %lu", indexPath.row, (unsigned long)[self.dataManager.albums count]);
-    if(indexPath.row+1 >= [self.dataManager.albums count])
+    //NSLog(@"%lu <=> %lu", (long)indexPath.row, (unsigned long)[self.dataManager.albums count]);
+    
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    if(indexPath.row+1 >= [dataManager.albums count])
     {
         if([[FASFacebookConnection sharedConnection] getNextAlbumPage])
             [self.albumListView reloadData];

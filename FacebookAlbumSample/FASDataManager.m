@@ -12,6 +12,14 @@
 
 @implementation FASDataManager
 
+static FASDataManager *sharedManager_ = nil;
++ (FASDataManager *)sharedManager{
+    if (!sharedManager_) {
+        sharedManager_ = [FASDataManager new];
+    }
+    return sharedManager_;
+}
+
 - (id)init
 {
     // Init FileManager
