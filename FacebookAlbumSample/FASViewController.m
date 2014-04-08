@@ -25,7 +25,6 @@
     FASDataManager *dataManager = [FASDataManager sharedManager];
     
     FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-    fb = [fb initWithDataManager:dataManager];
     [fb setReloadTableTarget:self.albumListView];
     
     [self.albumListView setDelegate:self];

@@ -19,16 +19,6 @@ static FASFacebookConnection *sharedConnection_ = nil;
     return sharedConnection_;
 }
 
-
--(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager
-{
-    self.dataManager = manager;
-    
-    self.nextAlbumListGraphPath = nil;
-    self.nextPhotoListGraphPath = nil;
-    return [super init];
-}
-
 -(void)startFacebookConnection
 {
     
@@ -121,6 +111,8 @@ static FASFacebookConnection *sharedConnection_ = nil;
 
 -(void)parseAlbumFBGraphObject:(FBGraphObject*)albums
 {
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    
     NSMutableArray *data = albums[@"data"];
     //現在のページに書いてあるアルバム名一覧を取得する
     for (NSInteger i=0; i<data.count; i++) {
@@ -129,7 +121,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
         [album setName:obj[@"name"]];
         [album setAlbumId:obj[@"id"]];
         
-        [self.dataManager.albums addObject:album];
+        [dataManager.albums addObject:album];
     }
     
     FBGraphObject *nextpage =albums[@"paging"];
@@ -137,7 +129,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
     
     //次のページをセットする
     NSLog(@"%@", nextPageURL);
-    self.dataManager.nextPageGraphPath = [self parseUrlToGraphPath:nextPageURL];
+    dataManager.nextPageGraphPath = [self parseUrlToGraphPath:nextPageURL];
     self.nextAlbumListGraphPath = [self parseUrlToGraphPath:nextPageURL];
 }
 
@@ -149,9 +141,10 @@ static FASFacebookConnection *sharedConnection_ = nil;
 
 -(BOOL)getNextAlbumPage
 {
-    if(self.dataManager.nextPageGraphPath != nil)
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    if(dataManager.nextPageGraphPath != nil)
     {
-        [self getUserDataWithGraphPath:self.dataManager.nextPageGraphPath];
+        [self getUserDataWithGraphPath:dataManager.nextPageGraphPath];
         return YES;
     }
     else
@@ -177,6 +170,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
                           completionHandler:^(FBRequestConnection *connection, FBGraphObject *result, NSError *error) {
                               NSLog(@"call");
                               if (!error){
+                                  FASDataManager *dataManager = [FASDataManager sharedManager];
                                   NSMutableArray *array = result[@"data"];
                                   NSLog(@"%@", array);
                                   for (FBGraphObject* obj in array)
@@ -188,12 +182,12 @@ static FASFacebookConnection *sharedConnection_ = nil;
                                       
                                       NSLog(@"%@", pictureUrl);
                                       
-                                      FASAlbum* album = [self.dataManager getActiveAlbum];
+                                      FASAlbum* album = [dataManager getActiveAlbum];
                                       FASPhoto *photo = [FASPhoto new];
                                       photo.thumbnailUrl = pictureUrl;
                                       photo.imageUrl = source;
                                       photo.graphId = graphId;
-                                      photo.thumbnail =[self getPhoto:photo.thumbnailUrl];
+                                      [self getThumbnailImage:photo];
                                       [album.photos addObject:photo];
                                       
                                   }
@@ -262,10 +256,12 @@ static FASFacebookConnection *sharedConnection_ = nil;
 {
     __block BOOL ret = NO;
     
+    FASDataManager *dataManager = [FASDataManager sharedManager];
+    
     NSLog(@"getNextPhotoList:%d", isFirst);
    if(isFirst == YES)
    {
-       FASAlbum *album = [self.dataManager getActiveAlbum];
+       FASAlbum *album = [dataManager getActiveAlbum];
        if([album.photos count] > 0) return YES;
        self.nextPhotoListGraphPath = [NSString stringWithFormat:@"/%@/photos", album.albumId];
    }
@@ -282,7 +278,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
                               if (!error){
                                   NSNumber* progressVal = @0;
                                   [self updateProgress:progressVal];
-                                  FASAlbum* album = [self.dataManager getActiveAlbum];
+                                  FASAlbum* album = [dataManager getActiveAlbum];
                                   NSMutableArray *array = result[@"data"];
                                   int i=0;
                                   for (FBGraphObject* obj in array)

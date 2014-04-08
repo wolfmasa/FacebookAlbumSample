@@ -16,10 +16,8 @@
 //シングルトン
 +(FASFacebookConnection*)sharedConnection;
 
-@property(weak, nonatomic)FASDataManager* dataManager;
-@property(nonatomic)UITableView* reloadTableTarget;
+@property(weak, nonatomic)UITableView* reloadTableTarget;
 @property(weak, nonatomic)FASAlbumThumbnailView* reloadCollectionTarget;
--(FASFacebookConnection*)initWithDataManager:(FASDataManager*)manager;
 
 -(void)startFacebookConnection;
 -(BOOL)getNextAlbumPage;

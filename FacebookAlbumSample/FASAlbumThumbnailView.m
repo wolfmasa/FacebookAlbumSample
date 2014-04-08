@@ -30,23 +30,20 @@
 {
     FASDataManager *dataManager = [FASDataManager sharedManager];
     FASAlbum* album = [dataManager getActiveAlbum];
-    if([album updateCacheStatus] == YES)
-    {
-        NSString *title;
-        switch (album.cacheStatus) {
-            case FASAlbumCacheStatusLoading:
-                title =@"Loading...";
-                break;
-            case FASAlbumCacheStatusNotCached:
-                title =@"Download Now";
-                break;
-            case FASAlbumCacheStatusCached:
-                title =@"Cached";
-                break;
-        }
-        
-        [self.saveButton setTitle:title forState:UIControlStateNormal];
+    [album updateCacheStatus];
+    NSString *title;
+    switch (album.cacheStatus) {
+        case FASAlbumCacheStatusLoading:
+            title =@"Loading...";
+            break;
+        case FASAlbumCacheStatusNotCached:
+            title =@"Download Now";
+            break;
+        case FASAlbumCacheStatusCached:
+            title =@"Cached";
+            break;
     }
+    [self.saveButton setTitle:title forState:UIControlStateNormal];
 }
 
 /*
