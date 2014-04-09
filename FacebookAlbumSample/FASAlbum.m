@@ -7,6 +7,7 @@
 //
 
 #import "FASAlbum.h"
+#import "FASPhoto.h"
 #import "FASFileManager.h"
 
 @implementation FASAlbum

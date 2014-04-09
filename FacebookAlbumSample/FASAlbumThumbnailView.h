@@ -10,9 +10,11 @@
 
 @interface FASAlbumThumbnailView : UIViewController
 
+//UI Controll
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollection;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
 
+//Update Cache status text
 -(void)updateCacheStatus;
 
 //SaveButton

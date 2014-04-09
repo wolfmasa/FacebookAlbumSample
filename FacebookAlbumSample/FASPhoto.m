@@ -19,7 +19,7 @@
         FASFileManager *fileManager = [FASFileManager sharedManager];
         self.image = [fileManager getPhotoWithPath:self.graphId];
         if(self.image==nil)
-            ret = NO;;
+            ret = NO;
     }
     
     return ret;

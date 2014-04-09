@@ -10,11 +10,11 @@
 
 @interface FASPhoto : NSObject<NSCoding>
 
-@property(nonatomic, strong)UIImage *thumbnail;
-@property(nonatomic, strong)NSString *thumbnailUrl;
-@property(nonatomic, strong)UIImage *image;
-@property(nonatomic, strong)NSString *imageUrl;
-@property(nonatomic, strong)NSString *graphId;
+@property UIImage *thumbnail;
+@property NSString *thumbnailUrl;
+@property UIImage *image;
+@property NSString *imageUrl;
+@property NSString *graphId;
 
 -(BOOL)isCached;
 

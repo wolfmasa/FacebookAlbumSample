@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
-#import "FASPhoto.h"
-
 
 typedef NS_ENUM(NSUInteger, FASAlbumCacheStatus) {
     FASAlbumCacheStatusNotCached,
@@ -18,12 +16,12 @@ typedef NS_ENUM(NSUInteger, FASAlbumCacheStatus) {
 };
 
 @interface FASAlbum : NSObject<NSCoding>
-@property(nonatomic) NSString* name;
-@property(nonatomic) NSString* albumId;
+@property NSString* name;
+@property NSString* albumId;
 
 @property FASAlbumCacheStatus cacheStatus;
 
-@property(nonatomic)NSMutableArray *photos;
+@property NSMutableArray *photos;
 
 - (id)init;
 -(BOOL)updateCacheStatus;

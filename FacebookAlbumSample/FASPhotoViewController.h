@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "FASPhoto.h"
-#import "FASFacebookConnection.h"
-#import "FASDataManager.h"
 
 @interface FASPhotoViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
-@property (weak, nonatomic) FASPhoto* photo;
+//UI Controll
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *prevButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
+
+@property (weak, nonatomic) FASPhoto* photo;
 
 - (IBAction)pushSave:(id)sender;
 - (IBAction)pushPrev:(id)sender;

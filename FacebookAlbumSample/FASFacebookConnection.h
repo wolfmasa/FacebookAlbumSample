@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "FASPhoto.h"
 #import "FASAlbumThumbnailView.h"
-#import "FASDataManager.h"
 
 @interface FASFacebookConnection : NSObject
 

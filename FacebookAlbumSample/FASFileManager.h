@@ -13,8 +13,8 @@
 //シングルトン
 +(FASFileManager*)sharedManager;
 
-@property(nonatomic, strong)NSString* userId;
-@property(nonatomic, strong)NSString* albumId;
+@property NSString* userId;
+@property NSString* albumId;
 
 -(BOOL)initWithUserId:(NSString*)userId;
 -(BOOL)setAlbum:(NSString*)albumId;

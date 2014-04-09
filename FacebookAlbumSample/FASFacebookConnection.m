@@ -7,6 +7,7 @@
 //
 
 #import "FASFacebookConnection.h"
+#import "FASDataManager.h"
 
 @implementation FASFacebookConnection
 

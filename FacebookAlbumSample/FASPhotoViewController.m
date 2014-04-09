@@ -8,6 +8,8 @@
 
 #import "FASPhotoViewController.h"
 #import "FASFileManager.h"
+#import "FASFacebookConnection.h"
+#import "FASDataManager.h"
 
 @interface FASPhotoViewController ()
 
