@@ -16,7 +16,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *albumListView;
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 
-- (IBAction)getAlbumList:(id)sender;
+- (void)getAlbumList;
 
+@property (weak, nonatomic) IBOutlet UISwitch *isConnection;
+- (IBAction)changeConnection:(id)sender;
 
 @end

@@ -21,34 +21,30 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-Dt-hX4">
-                                <rect key="frame" x="97" y="67" width="127" height="30"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WI5-Hj-esX">
+                                <rect key="frame" x="242" y="70" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="アルバム一覧">
-                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                                 <connections>
-                                    <action selector="getAlbumList:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sgy-Vm-CGJ"/>
+                                    <action selector="changeConnection:" destination="vXZ-lx-hvc" eventType="valueChanged" id="ZqJ-Xy-Naa"/>
                                 </connections>
-                            </button>
+                            </switch>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D47-3g-Bw6" customClass="FBLoginView">
+                                <rect key="frame" x="20" y="68" width="178" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sRt-Wj-Wkz" firstAttribute="top" secondItem="H0L-Dt-hX4" secondAttribute="bottom" constant="10" id="Tzh-qk-dJ6"/>
                             <constraint firstItem="RxG-56-vLq" firstAttribute="top" secondItem="sRt-Wj-Wkz" secondAttribute="bottom" id="bUh-Vg-EMV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cY6-pQ-Bpq">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="D47-3g-Bw6" customClass="FBLoginView">
-                            <rect key="frame" x="52" y="5" width="216" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
                     </navigationItem>
                     <connections>
-                        <outlet property="albumGetButton" destination="H0L-Dt-hX4" id="Y4R-kg-xIy"/>
                         <outlet property="albumListView" destination="sRt-Wj-Wkz" id="Uhx-g2-dat"/>
+                        <outlet property="isConnection" destination="WI5-Hj-esX" id="2W5-5w-iW3"/>
                         <outlet property="loginView" destination="D47-3g-Bw6" id="THV-K2-WqB"/>
                     </connections>
                 </viewController>

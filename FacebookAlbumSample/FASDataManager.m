@@ -82,8 +82,11 @@ static FASDataManager *sharedManager_ = nil;
         if(photo.image == nil)
         {
             FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-            [fb getFullImage:photo];
-            [fb updateProgress:[NSNumber numberWithFloat:((float)i*100/[album.photos count])]];
+            if(fb!=nil)
+            {
+                [fb getFullImage:photo];
+                [fb updateProgress:[NSNumber numberWithFloat:((float)i*100/[album.photos count])]];
+            }
         }
         [fileManager savePhoto:photo.graphId image:photo.image];
     }
@@ -103,7 +106,7 @@ static FASDataManager *sharedManager_ = nil;
     if([album.photos count]-1 <= indexPath.row)
     {
         FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-        [fb getNextPhotoList:NO];
+        if(fb!=nil) [fb getNextPhotoList:NO];
     }
     
     

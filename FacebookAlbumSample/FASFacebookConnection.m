@@ -16,7 +16,11 @@ static FASFacebookConnection *sharedConnection_ = nil;
 + (FASFacebookConnection *)sharedConnection{
     if (!sharedConnection_) {
         sharedConnection_ = [FASFacebookConnection new];
+        sharedConnection_.connectStatus = YES;
     }
+
+    //未接続状態ならnilを返す。（使えない）
+    if(sharedConnection_.connectStatus != YES) return nil;
     return sharedConnection_;
 }
 

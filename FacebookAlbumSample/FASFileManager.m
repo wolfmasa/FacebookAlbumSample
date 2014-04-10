@@ -100,6 +100,8 @@ static FASFileManager *sharedManager_ = nil;
                       , [self getDocumentDir],self.userId, self.albumId, photoId]];
 }
 
+
+#pragma mark Archive
 -(BOOL)archivePhotoData:(NSMutableArray*)albums
 {
     NSString *filePath = [[self getDocumentDir] stringByAppendingPathComponent:@"data.dat"];

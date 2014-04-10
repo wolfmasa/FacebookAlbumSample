@@ -25,7 +25,7 @@
     FASDataManager *dataManager = [FASDataManager sharedManager];
     
     FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-    [fb setReloadTableTarget:self.albumListView];
+    if(fb!=nil) [fb setReloadTableTarget:self.albumListView];
     
     [self.albumListView setDelegate:self];
     [self.albumListView setDataSource:dataManager];
@@ -43,6 +43,9 @@
     [FBLoginView class];
     
     self.loginView.delegate =self;
+    
+
+    [self getAlbumList];
     return YES;
 }
 
@@ -69,8 +72,10 @@
     NSLog(@"%@", user);
 }
 
-- (IBAction)getAlbumList:(id)sender {
-    [[FASFacebookConnection sharedConnection] startFacebookConnection];
+- (void)getAlbumList
+{
+    FASFacebookConnection *fb =[FASFacebookConnection sharedConnection];
+    if(fb!=nil) [fb startFacebookConnection];
 }
 
 
@@ -83,7 +88,7 @@
     FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
-    [fb setReloadCollectionTarget:thumbView];
+    if(fb!=nil) [fb setReloadCollectionTarget:thumbView];
     
     FASDataManager *dataManager = [FASDataManager sharedManager];
     [dataManager setActiveAlbumIndex:indexPath.row];
@@ -99,9 +104,14 @@
     FASDataManager *dataManager = [FASDataManager sharedManager];
     if(indexPath.row+1 >= [dataManager.albums count])
     {
-        if([[FASFacebookConnection sharedConnection] getNextAlbumPage])
+        FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
+        if([fb getNextAlbumPage])
             [self.albumListView reloadData];
     }
 }
 
+- (IBAction)changeConnection:(id)sender {
+    FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
+    fb.connectStatus = [self.isConnection isEnabled];
+}
 @end
