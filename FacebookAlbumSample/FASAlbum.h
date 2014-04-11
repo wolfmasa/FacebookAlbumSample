@@ -12,7 +12,8 @@
 typedef NS_ENUM(NSUInteger, FASAlbumCacheStatus) {
     FASAlbumCacheStatusNotCached,
     FASAlbumCacheStatusCached,
-    FASAlbumCacheStatusLoading
+    FASAlbumCacheStatusLoading,
+    FASAlbumCacheStatusDisConnection
 };
 
 @interface FASAlbum : NSObject<NSCoding>

@@ -42,6 +42,9 @@
         case FASAlbumCacheStatusCached:
             title =@"Cached";
             break;
+        case FASAlbumCacheStatusDisConnection:
+            title =@"Dis-Connection";
+            break;
     }
     [self.saveButton setTitle:title forState:UIControlStateNormal];
 }

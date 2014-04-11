@@ -92,7 +92,7 @@
     
     FASDataManager *dataManager = [FASDataManager sharedManager];
     [dataManager setActiveAlbumIndex:indexPath.row];
-    [fb getNextPhotoList:YES];
+    if(fb!=nil) [fb getNextPhotoList:YES];
     
     [self.navigationController pushViewController:thumbView animated:YES];
 }
@@ -105,13 +105,12 @@
     if(indexPath.row+1 >= [dataManager.albums count])
     {
         FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-        if([fb getNextAlbumPage])
-            [self.albumListView reloadData];
+        if(fb!=nil && [fb getNextAlbumPage]) [self.albumListView reloadData];
     }
 }
 
 - (IBAction)changeConnection:(id)sender {
     FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-    fb.connectStatus = [self.isConnection isEnabled];
+    if(fb!=nil) fb.connectStatus = [self.isConnection isOn];
 }
 @end

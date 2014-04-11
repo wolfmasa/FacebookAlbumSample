@@ -9,6 +9,7 @@
 #import "FASAlbum.h"
 #import "FASPhoto.h"
 #import "FASFileManager.h"
+#import "FASFacebookConnection.h"
 
 @implementation FASAlbum
 
@@ -25,7 +26,9 @@
     FASAlbumCacheStatus status;
     if([self.photos count]== 0)
     {
-        status = FASAlbumCacheStatusLoading;
+        FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
+        if(fb != nil) status = FASAlbumCacheStatusLoading;
+        else status = FASAlbumCacheStatusDisConnection;
     }
     else
     {
