@@ -56,6 +56,11 @@
     }
 }
 
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"%@(%@)->%d photos", self.name, self.albumId, [self.photos count]];
+}
+
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder

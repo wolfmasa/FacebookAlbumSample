@@ -99,10 +99,10 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"%lu <=> %lu", (long)indexPath.row, (unsigned long)[self.dataManager.albums count]);
     
     FASDataManager *dataManager = [FASDataManager sharedManager];
-    if(indexPath.row+1 >= [dataManager.albums count])
+    NSLog(@"%lu <=> %lu", (long)indexPath.row, (unsigned long)[dataManager.albums count]);
+    if(indexPath.row+2 >= [dataManager.albums count])
     {
         FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
         if(fb!=nil && [fb getNextAlbumPage]) [self.albumListView reloadData];

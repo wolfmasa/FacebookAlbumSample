@@ -25,6 +25,11 @@
     return ret;
 }
 
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"photo id:%p(thumb:%@, full:%@)", self.graphId, self.thumbnailUrl, self.imageUrl];
+}
+
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder
