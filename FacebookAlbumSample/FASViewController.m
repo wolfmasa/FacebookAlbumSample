@@ -21,15 +21,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    FASDataManager *dataManager = [FASDataManager sharedManager];
-    
-    FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-    if(fb!=nil) [fb setReloadTableTarget:self.albumListView];
-    
-    [self.albumListView setDelegate:self];
-    [self.albumListView setDataSource:dataManager];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,42 +63,6 @@
     NSLog(@"%@", user);
 }
 
-- (void)getAlbumList
-{
-    FASFacebookConnection *fb =[FASFacebookConnection sharedConnection];
-    if(fb!=nil) [fb startFacebookConnection];
-}
-
-
-#pragma mark UITableView
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    FASAlbumThumbnailView *thumbView = [sb instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
-    if(fb!=nil) [fb setReloadCollectionTarget:thumbView];
-    
-    FASDataManager *dataManager = [FASDataManager sharedManager];
-    [dataManager setActiveAlbumIndex:indexPath.row];
-    if(fb!=nil) [fb getNextPhotoList:YES];
-    
-    [self.navigationController pushViewController:thumbView animated:YES];
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    FASDataManager *dataManager = [FASDataManager sharedManager];
-    NSLog(@"%lu <=> %lu", (long)indexPath.row, (unsigned long)[dataManager.albums count]);
-    if(indexPath.row+2 >= [dataManager.albums count])
-    {
-        FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-        if(fb!=nil && [fb getNextAlbumPage]) [self.albumListView reloadData];
-    }
-}
 
 - (IBAction)changeConnection:(id)sender {
     FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];

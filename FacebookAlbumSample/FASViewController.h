@@ -12,8 +12,6 @@
 
 @interface FASViewController : UIViewController<UITableViewDelegate, FBLoginViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *albumGetButton;
-@property (weak, nonatomic) IBOutlet UITableView *albumListView;
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 
 - (void)getAlbumList;
