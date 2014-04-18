@@ -23,6 +23,12 @@
     if (self) {
         // Custom initialization
     }
+    
+    [self.nextButton setImage:[UIImage imageNamed:@"arrow-right-blue.png"] forState:UIControlStateNormal];
+    [self.prevButton setImage:[UIImage imageNamed:@"arrow-left-blue.png"] forState:UIControlStateNormal];
+    [self.saveButton setImage:[UIImage imageNamed:@"downloading-blue.png"] forState:UIControlStateNormal];
+    [self.nextButton setImage:[UIImage imageNamed:@"arrow-right-gray.png"] forState:UIControlStateDisabled];
+    [self.prevButton setImage:[UIImage imageNamed:@"arrow-left-gray.png"] forState:UIControlStateDisabled];
     return self;
 }
 

@@ -21,6 +21,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [self.getAlbumButton setImage:[UIImage imageNamed:@"stack-of-photos-blue.png"] forState:UIControlStateNormal];
+    [self.getAlbumButton setImage:[UIImage imageNamed:@"stack-of-photos-gray.png"] forState:UIControlStateDisabled];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,8 +38,6 @@
     
     self.loginView.delegate =self;
     
-
-    [self getAlbumList];
     return YES;
 }
 
