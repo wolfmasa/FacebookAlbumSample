@@ -24,6 +24,8 @@
     
     [self.getAlbumButton setImage:[UIImage imageNamed:@"stack-of-photos-blue.png"] forState:UIControlStateNormal];
     [self.getAlbumButton setImage:[UIImage imageNamed:@"stack-of-photos-gray.png"] forState:UIControlStateDisabled];
+    
+    self.loginView.delegate =self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,8 +37,6 @@
 -(BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [FBLoginView class];
-    
-    self.loginView.delegate =self;
     
     return YES;
 }
@@ -54,14 +54,21 @@
     return wasHandled;
 }
 
--(void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
-{
-    NSLog(@"%@", error);
-}
-
 -(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
 {
-    NSLog(@"%@", user);
+    //TODO
+}
+
+-(void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
+{
+    [self.getAlbumButton setEnabled:YES];
+    NSLog(@"%@", @"login");
+}
+
+-(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+    [self.getAlbumButton setEnabled:NO];
+    NSLog(@"%@", @"logout!");
 }
 
 
