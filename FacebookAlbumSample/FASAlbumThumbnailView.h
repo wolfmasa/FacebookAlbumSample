@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollection;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
 
+@property (strong, nonatomic) UIActivityIndicatorView *indicator;
+
 //Update Cache status text
 -(void)updateCacheStatus;
 

@@ -245,11 +245,28 @@ static FASFacebookConnection *sharedConnection_ = nil;
 {
     float progressValue =(float)[value100 intValue]/100;
     NSLog(@"progress:%f", progressValue);
-    if(progressValue == 1.0)
+    if(progressValue >= 1.0)
     {
+        if(self.reloadCollectionTarget.indicator !=nil)
+        {
+            [self.reloadCollectionTarget.indicator stopAnimating];
+        }
         progressValue = 0;
+        
+    }
+    else if(self.reloadCollectionTarget.indicator == nil)
+    {
+        self.reloadCollectionTarget.indicator = [UIActivityIndicatorView alloc];
+        self.reloadCollectionTarget.indicator = [self.reloadCollectionTarget.indicator initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.reloadCollectionTarget.indicator.hidesWhenStopped = YES;
+        CGSize size = self.reloadCollectionTarget.indicator.frame.size;
+        self.reloadCollectionTarget.indicator.frame = CGRectMake(200, 200, size.width, size.height);
+        [self.reloadCollectionTarget.thumbnailCollection addSubview:self.reloadCollectionTarget.indicator];
+        [self.reloadCollectionTarget.thumbnailCollection bringSubviewToFront:self.reloadCollectionTarget.indicator];
+        [self.reloadCollectionTarget.indicator startAnimating];
     }
     [self.reloadCollectionTarget.progress setProgress:progressValue];
+    
 }
 
 -(void)updateProgress:(NSNumber*)value100
