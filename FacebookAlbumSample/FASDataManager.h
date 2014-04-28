@@ -29,5 +29,6 @@
 -(FASPhoto*)getActivePhoto;
 
 -(BOOL)saveAlbum;
+-(void)clearAllAlbum;
 
 @end

@@ -86,6 +86,7 @@ static FASFileManager *sharedManager_ = nil;
 -(void)deleteFile:(NSString*)path
 {
     NSFileManager *fileManager= [NSFileManager defaultManager];
+    NSLog(@"delete file:%@", path);
     [fileManager removeItemAtPath:path error:nil];
 }
 
@@ -98,6 +99,11 @@ static FASFileManager *sharedManager_ = nil;
 {
     [self deleteFile:[NSString stringWithFormat:@"%@/%@/%@/%@.jpg"
                       , [self getDocumentDir],self.userId, self.albumId, photoId]];
+}
+
+-(void)clearAllCache
+{
+    [self deleteFile:[[self getDocumentDir] stringByAppendingPathComponent:@"data.dat"]];
 }
 
 

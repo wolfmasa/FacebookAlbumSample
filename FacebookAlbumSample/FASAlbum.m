@@ -58,7 +58,7 @@
 
 -(NSString*)description
 {
-    return [NSString stringWithFormat:@"%@(%@)->%d photos", self.name, self.albumId, [self.photos count]];
+    return [NSString stringWithFormat:@"%@(%@)->%lu photos", self.name, self.albumId, (unsigned long)[self.photos count]];
 }
 
 #pragma mark NSCoding

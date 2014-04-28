@@ -96,6 +96,15 @@ static FASDataManager *sharedManager_ = nil;
     return YES;
 }
 
+-(void)clearAllAlbum
+{
+    _albums = [NSMutableArray new];
+    _activeAlbumIndex = 0;
+    _activePhotoIndex = 0;
+    FASFileManager *fileManager = [FASFileManager sharedManager];
+    [fileManager clearAllCache];
+}
+
 #pragma mark UICollectionView
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
