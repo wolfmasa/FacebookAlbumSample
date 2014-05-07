@@ -322,7 +322,7 @@
 				ORGANIZATIONNAME = "Project Wolf";
 				TargetAttributes = {
 					447CB3F918A5F29E00EC0012 = {
-						DevelopmentTeam = HUA9832AFD;
+						DevelopmentTeam = XHCNSQ7LA6;
 					};
 					447CB41D18A5F29F00EC0012 = {
 						TestTargetID = 447CB3F918A5F29E00EC0012;

@@ -146,6 +146,13 @@ static FASDataManager *sharedManager_ = nil;
     }
     FASAlbum *a = (FASAlbum *)[self.albums objectAtIndex:indexPath.row];
     [cell textLabel].text = a.name;
+    
+    [a updateCacheStatus];
+    if(a.cacheStatus == FASAlbumCacheStatusCached)
+        [cell textLabel].textColor = [UIColor blueColor];
+    else
+        [cell textLabel].textColor = [UIColor blackColor];
+    
     return cell;
 }
 

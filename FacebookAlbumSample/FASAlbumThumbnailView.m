@@ -32,12 +32,14 @@
     FASAlbum* album = [dataManager getActiveAlbum];
     [album updateCacheStatus];
     NSString *title;
+    UIControlState state = UIControlStateDisabled;
     switch (album.cacheStatus) {
         case FASAlbumCacheStatusLoading:
             title =@"Loading...";
             break;
         case FASAlbumCacheStatusNotCached:
             title =@"Download Now";
+            state = UIControlStateNormal;
             break;
         case FASAlbumCacheStatusCached:
             title =@"Cached";
@@ -47,6 +49,7 @@
             break;
     }
     [self.saveButton setTitle:title forState:UIControlStateNormal];
+
 }
 
 /*
