@@ -16,15 +16,20 @@ typedef NS_ENUM(NSUInteger, FASAlbumCacheStatus) {
     FASAlbumCacheStatusDisConnection
 };
 
+/// アルバム管理クラス
 @interface FASAlbum : NSObject<NSCoding>
-@property NSString* name;
-@property NSString* albumId;
-
-@property FASAlbumCacheStatus cacheStatus;
-
+/// タイトル。
+@property(nonatomic)NSString* name;
+/// アルバムのGraph ID
+@property(nonatomic)NSString* albumId;
+/// Cacheの状態。適時updateCacheStatusで更新する
+@property(assign, nonatomic)FASAlbumCacheStatus cacheStatus;
+/// 保持する写真
 @property NSMutableArray *photos;
 
+/// 初期化
 - (id)init;
+/// キャッシュの状態を更新する。
 -(BOOL)updateCacheStatus;
 
 @end

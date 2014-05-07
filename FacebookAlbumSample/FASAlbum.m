@@ -67,8 +67,8 @@
 {
     self = [super init];
     if (self) {
-        self.name = [decoder decodeObjectForKey:@"name"];
-        self.albumId = [decoder decodeObjectForKey:@"albumId"];
+        _name = [decoder decodeObjectForKey:@"name"];
+        _albumId = [decoder decodeObjectForKey:@"albumId"];
         self.photos = [decoder decodeObjectForKey:@"photos"];
     }
     return self;
