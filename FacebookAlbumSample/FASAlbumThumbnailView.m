@@ -20,6 +20,10 @@
     FASDataManager *dataManager = [FASDataManager sharedManager];
     self.thumbnailCollection.delegate = dataManager;
     self.thumbnailCollection.dataSource = dataManager;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     [self.thumbnailCollection reloadData];
     
     [self updateCacheStatus];
