@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002FCDA1191C89E800AC114A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 002FCDA3191C89E800AC114A /* Localizable.strings */; };
 		00482F6A18FF8690004FF739 /* FASAlbumListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00482F6918FF8690004FF739 /* FASAlbumListController.m */; };
 		4417DEC418D8976200076FD2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4417DEC318D8976100076FD2 /* FacebookSDK.framework */; };
 		4417DEC718DB3FC900076FD2 /* FASPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4417DEC618DB3FC900076FD2 /* FASPhotoViewController.m */; };
@@ -14,7 +15,6 @@
 		447CB3FE18A5F29F00EC0012 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB3FD18A5F29F00EC0012 /* Foundation.framework */; };
 		447CB40018A5F29F00EC0012 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB3FF18A5F29F00EC0012 /* CoreGraphics.framework */; };
 		447CB40218A5F29F00EC0012 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB40118A5F29F00EC0012 /* UIKit.framework */; };
-		447CB40818A5F29F00EC0012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 447CB40618A5F29F00EC0012 /* InfoPlist.strings */; };
 		447CB40A18A5F29F00EC0012 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CB40918A5F29F00EC0012 /* main.m */; };
 		447CB40E18A5F29F00EC0012 /* FASAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CB40D18A5F29F00EC0012 /* FASAppDelegate.m */; };
 		447CB41118A5F29F00EC0012 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447CB40F18A5F29F00EC0012 /* Main_iPhone.storyboard */; };
@@ -24,7 +24,6 @@
 		447CB42018A5F29F00EC0012 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB41F18A5F29F00EC0012 /* XCTest.framework */; };
 		447CB42118A5F29F00EC0012 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB3FD18A5F29F00EC0012 /* Foundation.framework */; };
 		447CB42218A5F29F00EC0012 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB40118A5F29F00EC0012 /* UIKit.framework */; };
-		447CB42A18A5F29F00EC0012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 447CB42818A5F29F00EC0012 /* InfoPlist.strings */; };
 		447CB42C18A5F29F00EC0012 /* FacebookAlbumSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CB42B18A5F29F00EC0012 /* FacebookAlbumSampleTests.m */; };
 		449AB91E18B58A380093C495 /* FASAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 449AB91D18B58A380093C495 /* FASAlbum.m */; };
 		44AAED6118C4E10F0080E131 /* FASFacebookConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */; };
@@ -60,6 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		002FCD90191C880800AC114A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		002FCD91191C880800AC114A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main_iPad.strings; sourceTree = "<group>"; };
+		002FCD92191C882800AC114A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		002FCD93191C882800AC114A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
+		002FCDA2191C89E800AC114A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		002FCDA4191C89EC00AC114A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00482F6818FF8690004FF739 /* FASAlbumListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASAlbumListController.h; sourceTree = "<group>"; };
 		00482F6918FF8690004FF739 /* FASAlbumListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASAlbumListController.m; sourceTree = "<group>"; };
 		4417DEC318D8976100076FD2 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -72,7 +77,6 @@
 		447CB3FF18A5F29F00EC0012 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		447CB40118A5F29F00EC0012 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		447CB40518A5F29F00EC0012 /* FacebookAlbumSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FacebookAlbumSample-Info.plist"; sourceTree = "<group>"; };
-		447CB40718A5F29F00EC0012 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		447CB40918A5F29F00EC0012 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		447CB40B18A5F29F00EC0012 /* FacebookAlbumSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FacebookAlbumSample-Prefix.pch"; sourceTree = "<group>"; };
 		447CB40C18A5F29F00EC0012 /* FASAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FASAppDelegate.h; sourceTree = "<group>"; };
@@ -85,7 +89,6 @@
 		447CB41E18A5F29F00EC0012 /* FacebookAlbumSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookAlbumSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		447CB41F18A5F29F00EC0012 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		447CB42718A5F29F00EC0012 /* FacebookAlbumSampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FacebookAlbumSampleTests-Info.plist"; sourceTree = "<group>"; };
-		447CB42918A5F29F00EC0012 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		447CB42B18A5F29F00EC0012 /* FacebookAlbumSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FacebookAlbumSampleTests.m; sourceTree = "<group>"; };
 		449AB91C18B58A380093C495 /* FASAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASAlbum.h; sourceTree = "<group>"; };
 		449AB91D18B58A380093C495 /* FASAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASAlbum.m; sourceTree = "<group>"; };
@@ -209,9 +212,9 @@
 				44E8BBA319018D0200459E74 /* stack-of-photos-gray.png */,
 				44E8BBA419018D0200459E74 /* stack-of-photos-gray@2x.png */,
 				447CB40518A5F29F00EC0012 /* FacebookAlbumSample-Info.plist */,
-				447CB40618A5F29F00EC0012 /* InfoPlist.strings */,
 				447CB40918A5F29F00EC0012 /* main.m */,
 				447CB40B18A5F29F00EC0012 /* FacebookAlbumSample-Prefix.pch */,
+				002FCDA3191C89E800AC114A /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -229,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				447CB42718A5F29F00EC0012 /* FacebookAlbumSampleTests-Info.plist */,
-				447CB42818A5F29F00EC0012 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -369,9 +371,9 @@
 				44E8BBA819018D0200459E74 /* arrow-left-gray@2x.png in Resources */,
 				44E8BBAB19018D0200459E74 /* arrow-right-gray.png in Resources */,
 				44E8BBA519018D0200459E74 /* arrow-left-blue.png in Resources */,
+				002FCDA1191C89E800AC114A /* Localizable.strings in Resources */,
 				44E8BBB019018D0200459E74 /* stack-of-photos-blue@2x.png in Resources */,
 				44E8BBB119018D0200459E74 /* stack-of-photos-gray.png in Resources */,
-				447CB40818A5F29F00EC0012 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +381,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				447CB42A18A5F29F00EC0012 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,18 +425,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		447CB40618A5F29F00EC0012 /* InfoPlist.strings */ = {
+		002FCDA3191C89E800AC114A /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				447CB40718A5F29F00EC0012 /* en */,
+				002FCDA2191C89E800AC114A /* ja */,
+				002FCDA4191C89EC00AC114A /* en */,
 			);
-			name = InfoPlist.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		447CB40F18A5F29F00EC0012 /* Main_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				447CB41018A5F29F00EC0012 /* Base */,
+				002FCD90191C880800AC114A /* ja */,
+				002FCD92191C882800AC114A /* en */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -444,16 +448,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				447CB41318A5F29F00EC0012 /* Base */,
+				002FCD91191C880800AC114A /* ja */,
+				002FCD93191C882800AC114A /* en */,
 			);
 			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		447CB42818A5F29F00EC0012 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				447CB42918A5F29F00EC0012 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

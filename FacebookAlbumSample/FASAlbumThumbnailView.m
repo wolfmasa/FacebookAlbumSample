@@ -42,7 +42,8 @@
             title =@"Loading...";
             break;
         case FASAlbumCacheStatusNotCached:
-            title =@"Download Now";
+//            title =@"Download Now";
+            title = [NSString stringWithFormat:NSLocalizedString(@"Downloading", nil)];
             state = UIControlStateNormal;
             break;
         case FASAlbumCacheStatusCached:

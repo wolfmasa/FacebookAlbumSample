@@ -1,0 +1,18 @@
+
+/* Class = "IBUILabel"; text = "オンライン"; ObjectID = "CXu-KT-yEG"; */
+"CXu-KT-yEG.text" = "Online";
+
+/* Class = "IBUIButton"; normalTitle = "友達一覧"; ObjectID = "XkT-Wt-OhA"; */
+"XkT-Wt-OhA.normalTitle" = "Friend List";
+
+/* Class = "IBUIButton"; normalTitle = "キャッシュをクリア"; ObjectID = "cgz-ec-ZaK"; */
+"cgz-ec-ZaK.normalTitle" = "Clear Cache";
+
+/* Class = "IBUIButton"; normalTitle = "アルバム一覧"; ObjectID = "i8y-Z1-a3w"; */
+"i8y-Z1-a3w.normalTitle" = "Album List";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "oaS-9s-2M9"; */
+"oaS-9s-2M9.text" = "Name";
+
+/* Class = "IBUIButton"; normalTitle = "Save"; ObjectID = "tWH-Y0-SMl"; */
+"tWH-Y0-SMl.normalTitle" = "Save";
