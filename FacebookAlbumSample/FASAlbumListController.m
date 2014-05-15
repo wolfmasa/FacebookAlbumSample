@@ -36,7 +36,8 @@
     if(fb!=nil)
     {
         [fb setReloadTableTarget:self.tableView];
-        [fb startFacebookConnection];
+        [fb initConnection];
+        [fb getFirstAlbumList];
     }
     
     

@@ -13,18 +13,26 @@
 
 @interface FASFacebookConnection : NSObject
 
-//シングルトン
+/// シングルトン
 +(FASFacebookConnection*)sharedConnection;
 
 @property(weak, nonatomic)UITableView* reloadTableTarget;
 @property(weak, nonatomic)FASAlbumThumbnailView* reloadCollectionTarget;
 
+/// Fecebookと接続を開始してアルバムのデータを取得する
 -(void)startFacebookConnection;
+
+/// Facebook接続との初期化。権限の取得
+-(void)initConnection;
 -(BOOL)getNextAlbumPage;
+-(void)getFirstAlbumList;
 -(void)getAlbumData:(NSString*)albumId;
 
 @property NSString *nextAlbumListGraphPath;
 @property NSString *nextPhotoListGraphPath;
+
+/// permission for Facebook access
+@property NSMutableArray *permission;
 
 -(BOOL)getNextAlbumList:(BOOL)isFirst;
 -(BOOL)getNextPhotoList:(BOOL)isFirst;

@@ -17,11 +17,54 @@ static FASFacebookConnection *sharedConnection_ = nil;
     if (!sharedConnection_) {
         sharedConnection_ = [FASFacebookConnection new];
         sharedConnection_.connectStatus = YES;
+        sharedConnection_.permission = [NSMutableArray arrayWithArray:@[@"basic_info", @"user_photos", @"user_about_me"]];
     }
 
     //未接続状態ならnilを返す。（使えない）
     if(sharedConnection_.connectStatus != YES) return nil;
     return sharedConnection_;
+}
+
+-(void)initConnection
+{
+    
+    // Request the permissions the user currently has
+    [FBRequestConnection startWithGraphPath:@"/me/permissions"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (!error){
+                                  // These are the current permissions the user has:
+                                  NSDictionary *currentPermissions= [(NSArray *)[result data] objectAtIndex:0];
+                                  // We will store here the missing permissions that we will have to request
+                                  NSMutableArray *requestPermissions = [[NSMutableArray alloc] initWithArray:@[]];
+                                  
+                                  // Check if all the permissions we need are present in the user's current permissions
+                                  // If they are not present add them to the permissions to be requested
+                                  for (NSString *permission in _permission){
+                                      if (![currentPermissions objectForKey:permission]){
+                                          [requestPermissions addObject:permission];
+                                      }
+                                  }
+                                  
+                                  // If we have permissions to request
+                                  if ([requestPermissions count] > 0){
+                                      // Ask for the missing permissions
+                                      [FBSession.activeSession
+                                       requestNewReadPermissions:requestPermissions
+                                       completionHandler:^(FBSession *session, NSError *error) {
+                                           if(error){
+                                               NSLog(@"Error:%@", error);
+                                           }
+                                           else{
+                                               [_permission addObjectsFromArray:requestPermissions];
+                                           }
+                                       }];
+                                  }
+                                  
+                              } else {
+                                  NSLog(@"Error:%@", error);
+                              }
+                          }
+     ];
 }
 
 -(void)startFacebookConnection
@@ -58,7 +101,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
                                                // Permission granted
                                                NSLog(@"new permissions %@", [FBSession.activeSession permissions]);
                                                // We can request the user information
-                                               [self getAlbumData];
+                                               [self getFirstAlbumList];
                                            } else {
                                                // An error occurred, we need to handle the error
                                                // See: https://developers.facebook.com/docs/ios/errors
@@ -67,7 +110,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
                                   } else {
                                       // Permissions are present
                                       // We can request the user information
-                                      [self getAlbumData];
+                                      [self getFirstAlbumList];
                                   }
                                   
                               } else {
@@ -77,7 +120,7 @@ static FASFacebookConnection *sharedConnection_ = nil;
                           }];
 }
 
--(void)getAlbumData
+-(void)getFirstAlbumList
 {
     [self getUserDataWithGraphPath:@"/me?fields=albums.fields(name)"];
 }
