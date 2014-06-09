@@ -26,6 +26,10 @@
 		447CB42218A5F29F00EC0012 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CB40118A5F29F00EC0012 /* UIKit.framework */; };
 		447CB42C18A5F29F00EC0012 /* FacebookAlbumSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CB42B18A5F29F00EC0012 /* FacebookAlbumSampleTests.m */; };
 		449AB91E18B58A380093C495 /* FASAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 449AB91D18B58A380093C495 /* FASAlbum.m */; };
+		44A4D9DA19460D1D00620923 /* BDDynamicGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D9D419460D1D00620923 /* BDDynamicGridCell.m */; };
+		44A4D9DB19460D1D00620923 /* BDDynamicGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D9D619460D1D00620923 /* BDDynamicGridViewController.m */; };
+		44A4D9DC19460D1D00620923 /* BDRowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D9D919460D1D00620923 /* BDRowInfo.m */; };
+		44A4D9DF19460E0000620923 /* FASGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D9DE19460E0000620923 /* FASGridViewController.m */; };
 		44AAED6118C4E10F0080E131 /* FASFacebookConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */; };
 		44D0F0BA18C0C8E200DEEE7D /* FASDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D0F0B918C0C8E200DEEE7D /* FASDataManager.m */; };
 		44D0F0BD18C0CF5D00DEEE7D /* FASPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D0F0BC18C0CF5D00DEEE7D /* FASPhoto.m */; };
@@ -92,6 +96,15 @@
 		447CB42B18A5F29F00EC0012 /* FacebookAlbumSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FacebookAlbumSampleTests.m; sourceTree = "<group>"; };
 		449AB91C18B58A380093C495 /* FASAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASAlbum.h; sourceTree = "<group>"; };
 		449AB91D18B58A380093C495 /* FASAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASAlbum.m; sourceTree = "<group>"; };
+		44A4D9D319460D1D00620923 /* BDDynamicGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridCell.h; sourceTree = "<group>"; };
+		44A4D9D419460D1D00620923 /* BDDynamicGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicGridCell.m; sourceTree = "<group>"; };
+		44A4D9D519460D1D00620923 /* BDDynamicGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridViewController.h; sourceTree = "<group>"; };
+		44A4D9D619460D1D00620923 /* BDDynamicGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicGridViewController.m; sourceTree = "<group>"; };
+		44A4D9D719460D1D00620923 /* BDDynamicGridViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridViewDelegate.h; sourceTree = "<group>"; };
+		44A4D9D819460D1D00620923 /* BDRowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDRowInfo.h; sourceTree = "<group>"; };
+		44A4D9D919460D1D00620923 /* BDRowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDRowInfo.m; sourceTree = "<group>"; };
+		44A4D9DD19460E0000620923 /* FASGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASGridViewController.h; sourceTree = "<group>"; };
+		44A4D9DE19460E0000620923 /* FASGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASGridViewController.m; sourceTree = "<group>"; };
 		44AAED5F18C4E10F0080E131 /* FASFacebookConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASFacebookConnection.h; sourceTree = "<group>"; };
 		44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASFacebookConnection.m; sourceTree = "<group>"; };
 		44D0F0B818C0C8E200DEEE7D /* FASDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASDataManager.h; sourceTree = "<group>"; };
@@ -147,6 +160,7 @@
 		447CB3F118A5F29E00EC0012 = {
 			isa = PBXGroup;
 			children = (
+				44A4D9D219460CF800620923 /* BDDynamicGridView */,
 				447CB40318A5F29F00EC0012 /* FacebookAlbumSample */,
 				447CB42518A5F29F00EC0012 /* FacebookAlbumSampleTests */,
 				447CB3FC18A5F29F00EC0012 /* Frameworks */,
@@ -262,6 +276,8 @@
 				4417DEC618DB3FC900076FD2 /* FASPhotoViewController.m */,
 				00482F6818FF8690004FF739 /* FASAlbumListController.h */,
 				00482F6918FF8690004FF739 /* FASAlbumListController.m */,
+				44A4D9DD19460E0000620923 /* FASGridViewController.h */,
+				44A4D9DE19460E0000620923 /* FASGridViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -273,6 +289,20 @@
 				44AAED6018C4E10F0080E131 /* FASFacebookConnection.m */,
 			);
 			name = Communication;
+			sourceTree = "<group>";
+		};
+		44A4D9D219460CF800620923 /* BDDynamicGridView */ = {
+			isa = PBXGroup;
+			children = (
+				44A4D9D319460D1D00620923 /* BDDynamicGridCell.h */,
+				44A4D9D419460D1D00620923 /* BDDynamicGridCell.m */,
+				44A4D9D519460D1D00620923 /* BDDynamicGridViewController.h */,
+				44A4D9D619460D1D00620923 /* BDDynamicGridViewController.m */,
+				44A4D9D719460D1D00620923 /* BDDynamicGridViewDelegate.h */,
+				44A4D9D819460D1D00620923 /* BDRowInfo.h */,
+				44A4D9D919460D1D00620923 /* BDRowInfo.m */,
+			);
+			name = BDDynamicGridView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				449AB91E18B58A380093C495 /* FASAlbum.m in Sources */,
+				44A4D9DF19460E0000620923 /* FASGridViewController.m in Sources */,
 				447CB40A18A5F29F00EC0012 /* main.m in Sources */,
 				44D0F0BA18C0C8E200DEEE7D /* FASDataManager.m in Sources */,
 				447CB41718A5F29F00EC0012 /* FASViewController.m in Sources */,
@@ -399,7 +430,10 @@
 				447CB40E18A5F29F00EC0012 /* FASAppDelegate.m in Sources */,
 				00482F6A18FF8690004FF739 /* FASAlbumListController.m in Sources */,
 				44AAED6118C4E10F0080E131 /* FASFacebookConnection.m in Sources */,
+				44A4D9DB19460D1D00620923 /* BDDynamicGridViewController.m in Sources */,
 				44D0F0BD18C0CF5D00DEEE7D /* FASPhoto.m in Sources */,
+				44A4D9DC19460D1D00620923 /* BDRowInfo.m in Sources */,
+				44A4D9DA19460D1D00620923 /* BDDynamicGridCell.m in Sources */,
 				4476DC8018F0EACB0090BD44 /* FASFileManager.m in Sources */,
 				4417DEC718DB3FC900076FD2 /* FASPhotoViewController.m in Sources */,
 				44EB46DA18C634BD00C57AF2 /* FASPhotoCell.m in Sources */,

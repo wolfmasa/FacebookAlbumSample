@@ -23,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 - (IBAction)saveAlbum:(id)sender;
 
+- (IBAction)gotoGridView:(id)sender;
+
 @end
