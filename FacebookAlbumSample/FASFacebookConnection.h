@@ -39,6 +39,7 @@
 -(BOOL)getThumbnailImage:(FASPhoto*)photo;
 -(BOOL)getFullImage:(FASPhoto*)photo;
 
++(void)changeConnectStatus:(BOOL)isOn;
 @property BOOL connectStatus;
 
 -(void)updateProgress:(NSNumber*)value100;

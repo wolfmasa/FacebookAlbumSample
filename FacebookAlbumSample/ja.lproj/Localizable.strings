@@ -6,4 +6,7 @@
   Copyright (c) 2014年 Project Wolf. All rights reserved.
 */
 
-"Downloading" = "ダウンロード中です...";
+"Download" = "ダウンロード";
+"Loading"  = "ロード中";
+"Cached"   = "キャッシュ済み";
+"DisConnect" = "未接続";

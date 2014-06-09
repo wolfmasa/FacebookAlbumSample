@@ -74,6 +74,8 @@ static FASDataManager *sharedManager_ = nil;
 
 -(BOOL)saveAlbum
 {
+    if([FASFacebookConnection sharedConnection] == nil) return NO;
+    
     FASFileManager *fileManager = [FASFileManager sharedManager];
     FASAlbum* album = [self getActiveAlbum];
     int i = 0;

@@ -6,4 +6,7 @@
   Copyright (c) 2014年 Project Wolf. All rights reserved.
 */
 
-"Downloading" = "Downloading...";
+"Download" = "Download";
+"Loading"  = "Loading...";
+"Cached"   = "Cached";
+"DisConnect" = "Dis-Connect";

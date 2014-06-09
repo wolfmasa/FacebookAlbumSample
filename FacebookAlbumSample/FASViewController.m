@@ -78,8 +78,7 @@
 
 
 - (IBAction)changeConnection:(id)sender {
-    FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
-    if(fb!=nil) fb.connectStatus = [self.isConnection isOn];
+    [FASFacebookConnection changeConnectStatus:[self.isConnection isOn]];
 }
 - (IBAction)clearCache:(id)sender {
     

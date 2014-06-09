@@ -25,6 +25,12 @@ static FASFacebookConnection *sharedConnection_ = nil;
     return sharedConnection_;
 }
 
++(void)changeConnectStatus:(BOOL)isOn
+{
+    if (sharedConnection_ == nil) sharedConnection_ = [FASFacebookConnection new];
+    sharedConnection_.connectStatus = isOn;
+}
+
 -(void)initConnection
 {
     
