@@ -8,6 +8,9 @@
 
 #import "FASGridViewController.h"
 
+#import "BDDynamicGridCell.h"
+#import "BDRowInfo.h"
+
 @interface FASGridViewController ()
 
 @end
@@ -46,7 +49,8 @@
     FASAlbum* album = [manager getActiveAlbum];
     
     for (FASPhoto* p in album.photos ) {
-        UIImage * image = [self clipImage:p.image resize:CGSizeMake(100., 100.)];
+        //UIImage * image = [self clipImage:p.image resize:CGSizeMake(100., 100.)];
+        UIImage *image = p.image;
         
         UIImageView *iv = [[UIImageView alloc]initWithImage:image];
         [_images addObject:iv];
@@ -80,7 +84,7 @@
 
 -(NSUInteger)maximumViewsPerCell
 {
-    return 3;
+    return 5;
 }
 
 - (UIView *)viewAtIndex:(NSUInteger)index rowInfo:(BDRowInfo *)rowInfo
@@ -95,8 +99,8 @@
     //    }else {
     //        return 100;
     //    }
-    //return 55 + (arc4random() % 125);
-    return 100;
+    return 55 + (arc4random() % 125);
+    //return 100;
 }
 
 - (void) animateUpdate:(NSArray*)objects
@@ -122,16 +126,15 @@
 
 - (void)_demoAsyncDataLoading
 {
-    /**
+
      _items = [NSArray array];
      //load the placeholder image
-     for (int i=0; i < kNumberOfPhotos; i++) {
+     for (int i=0; i < _images.count; i++) {
      UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"placeholder.png"]];
      imageView.frame = CGRectMake(0, 0, 44, 44);
      imageView.clipsToBounds = YES;
      _items = [_items arrayByAddingObject:imageView];
      }
-     **/
     
     [self reloadData];
     

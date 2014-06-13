@@ -11,5 +11,6 @@
 
 @interface FASGridViewController : BDDynamicGridViewController<BDDynamicGridViewDelegate>
 
+@property NSArray *items;
 @property NSMutableArray *images;
 @end
