@@ -26,7 +26,8 @@
     [self.getAlbumButton setImage:[UIImage imageNamed:@"stack-of-photos-gray.png"] forState:UIControlStateDisabled];
     
     self.loginView.delegate =self;
-    
+    _isConnect = true;
+    [_connectButton setTitle:@"接続" forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,12 +78,20 @@
 }
 
 
-- (IBAction)changeConnection:(id)sender {
-    [FASFacebookConnection changeConnectStatus:[self.isConnection isOn]];
-}
 - (IBAction)clearCache:(id)sender {
     
     FASDataManager *dataManager = [FASDataManager sharedManager];
     [dataManager clearAllAlbum];
+}
+- (IBAction)changeConnect:(id)sender {
+    if (_isConnect==true) {
+        _isConnect = false;
+        [_connectButton setTitle:@"未接続" forState:UIControlStateNormal];
+    }
+    else{
+        _isConnect = true;
+        [_connectButton setTitle:@"接続" forState:UIControlStateNormal];
+    }
+    [FASFacebookConnection changeConnectStatus:_isConnect];
 }
 @end

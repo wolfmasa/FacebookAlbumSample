@@ -33,7 +33,7 @@
         FASFacebookConnection *fb = [FASFacebookConnection sharedConnection];
         if(fb!=nil) [fb getFullImage:self.photo];
     }
-    NSLog(@"%fx%f", self.photo.image.size.width, self.photo.image.size.height);
+    //NSLog(@"%fx%f", self.photo.image.size.width, self.photo.image.size.height);
     [self.imageView setImage:self.photo.image];
    
     FASFileManager* fileManager = [FASFileManager sharedManager];

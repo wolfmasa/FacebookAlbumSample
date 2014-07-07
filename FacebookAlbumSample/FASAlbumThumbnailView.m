@@ -12,8 +12,6 @@
 #import "FASAlbum.h"
 #import "FASDataManager.h"
 
-#import "FASGridViewController.h"
-
 @implementation FASAlbumThumbnailView
 
 - (void)viewDidLoad
@@ -112,8 +110,4 @@
        [self updateCacheStatus];
 }
 
-- (IBAction)gotoGridView:(id)sender {
-    FASGridViewController *controller = [FASGridViewController new];
-    [self.navigationController pushViewController:controller animated:YES];
-}
 @end

@@ -12,10 +12,11 @@
 
 @interface FASViewController : UIViewController<UITableViewDelegate, FBLoginViewDelegate>
 
+@property bool isConnect;
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 
-@property (weak, nonatomic) IBOutlet UISwitch *isConnection;
-- (IBAction)changeConnection:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *connectButton;
+- (IBAction)changeConnect:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *getAlbumButton;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 
